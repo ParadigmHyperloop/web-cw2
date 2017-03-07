@@ -9,27 +9,26 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="PodJS.js" type="text/javascript"></script>
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 550px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-        
+  <style>    
     /* On small screens, set height to 'auto' for the grid */
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 1024px) {
       .row.content {height: auto;} 
+    } 
+    .jumbotron {
+      background-image: url("http://i.imgur.com/TTtwzVF.png?3");
+      height:93.8vh;
+      margin-bottom:0px;
+    } 
+    .label {
+      font-size: 12px;
     }
-    body  {
-      background-image: url("http://i.imgur.com/6K5nIuU.jpg?5");        
+    .navbar {
+      margin-bottom:0px;
     }
   </style>
 </head>  
 <body>
-		<nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,14 +44,14 @@
         <li id="telemetrydata"><a onclick="telemetrydata()" href="#">Telemetry Data</a></li>
         <li id="flightprofile"><a onclick="flightprofile()" href="#">Flight Profile</a></li>
         <li><a href="#" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Commands<span class="caret"></span>
-        		<ul class="dropdown-menu">
-        			<li id="poweron" ><a onclick="poweron()" href="#">POWER ON</a></li>
+            <ul class="dropdown-menu">
+              <li id="poweron" ><a onclick="poweron()" href="#">POWER ON</a></li>
               <li id="lpfill"  ><a onclick="lpfill()" href="#">STATE LP FILL</a></li>
               <li id="hpfill"  ><a onclick="hpfill()" href="#">STATE HP FILL</a></li>
-        			<li id="armpod"  ><a onclick="armpod()" href="#">ARM THE POD</a></li>
+              <li id="armpod"  ><a onclick="armpod()" href="#">ARM THE POD</a></li>
               <li id="shutdown"><a onclick="shutdown()" href="#">SHUT DOWN</a></li>
-        		</ul>
-       			</a></li>
+            </ul>
+            </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li id="ventstate"><a onclick="ventstate()" href="#">Vent State</a></li>
@@ -60,7 +59,29 @@
           <span class="glyphicon glyphicon-warning-sign"></span> Emergency Stop</a></li>
       </ul>
     </div>
-  </div>
+  </div>  
 </nav>
-	</body>
+</body>
+<div class="jumbotron">
+  <div class="container">
+    <span id="solenoidSkateA" class="label label-success" style="position:absolute; top:46%; left:30.5%;">Closed</span>
+    <span id="solenoidSkateA" class="label label-danger" style="position:absolute; top:46%; left:34%;">100%</span>
+    <span id="solenoidSkateB" class="label label-success" style="position:absolute; top:46%; left:57.5%;">Closed</span>
+    <span id="solenoidSkateB" class="label label-danger" style="position:absolute; top:46%; left:61%;">100%</span>
+    <span id="solenoidSkateC" class="label label-success" style="position:absolute; top:46%; left:86.5%;">Closed</span>
+    <span id="solenoidSkateC" class="label label-danger" style="position:absolute; top:46%; left:90%;">100%</span>
+    <span id="solenoidSkateD" class="label label-success" style="position:absolute; top:62%; left:30.5%;">Closed</span>
+    <span id="solenoidSkateD" class="label label-danger" style="position:absolute; top:62%; left:34%;">100%</span>
+    <span id="solenoidSkateE" class="label label-success" style="position:absolute; top:62%; left:57.5%;">Closed</span>
+    <span id="solenoidSkateE" class="label label-danger" style="position:absolute; top:62%; left:61%;">100%</span> 
+    <span id="solenoidSkateF" class="label label-success" style="position:absolute; top:62%; left:86.5%;">Closed</span>
+    <span id="solenoidSkateF" class="label label-danger" style="position:absolute; top:62%; left:90%;">100%</span>
+    <span id="solenoidSkateMiddle1" class="label label-success" style="position:absolute; top:54%; left:46%;">Closed</span>
+    <span id="solenoidSkateMiddle1" class="label label-danger" style="position:absolute; top:54%; left:50%;">Engaged</span>
+    <span id="solenoidSkateMiddle2" class="label label-success" style="position:absolute; top:54%; left:65%;">Closed</span>
+    <span id="solenoidSkateMiddle2" class="label label-danger" style="position:absolute; top:54%; left:69%;">Engaged</span>
+    <span id="UnknownName1" class="label label-success" style="position:absolute; top:48%; left:18%;">Open</span>
+    <span id="UnknownName2" class="label label-success" style="position:absolute; top:72%; left:74%;">Closed</span>
+  </div>
+</div>  
 </html>
