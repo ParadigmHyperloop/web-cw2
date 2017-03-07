@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <title>Paradigm Transportation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css" type= "text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="PodJS.js" type="text/javascript"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+
+    body  {
+      background-image: url("http://i.imgur.com/6K5nIuU.jpg?5");  
+      
+    }
+  </style>
+</head>  
+<body>
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="https://paradigm.earth">Paradigm</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li id="telemetrydata"><a onclick="telemetrydata()" href="#">Telemetry Data</a></li>
+        <li id="flightprofile"><a onclick="flightprofile()" href="#">Flight Profile</a></li>
+        <li><a href="#" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Commands<span class="caret"></span>
+        		<ul class="dropdown-menu">
+        			<li id="poweron" ><a onclick="poweron()" href="#">POWER ON</a></li>
+              <li id="lpfill"  ><a onclick="lpfill()" href="#">STATE LP FILL</a></li>
+              <li id="hpfill"  ><a onclick="hpfill()" href="#">STATE HP FILL</a></li>
+        			<li id="armpod"  ><a onclick="armpod()" href="#">ARM THE POD</a></li>
+              <li id="shutdown"><a onclick="shutdown()" href="#">SHUT DOWN</a></li>
+        		</ul>
+       			</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li id="ventstate"><a onclick="ventstate()" href="#">Vent State</a></li>
+        <li id="emergencystop"><a onclick="emergencystop()" href="#">
+          <span class="glyphicon glyphicon-warning-sign"></span> Emergency Stop</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+	</body>
+</html>
