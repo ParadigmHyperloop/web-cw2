@@ -1,0 +1,19 @@
+/* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 1024px) {
+      .row.content {height: auto;} 
+    } 
+    .jumbotron {
+      background: url("http://i.imgur.com/TTtwzVF.png?3") no-repeat center center fixed; 
+      background-size: cover;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      height:93.8vh;
+      margin-bottom:0px;
+    } 
+    .label {
+      font-size: 12px;
+    }
+    .navbar {
+      margin-bottom: 0px;
+    }
