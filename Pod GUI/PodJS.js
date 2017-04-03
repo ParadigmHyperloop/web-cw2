@@ -41,80 +41,112 @@ function flightprofile() {
 
 // Timer function for each solenoid skate
 // Parses JSON data from Python API and changes the badges accordingly
-var myTimerIntA = setInterval (myTimerA, 1000);
+var myTimerIntA = setInterval (mySkateTimerA, 1000);
 var solSkateA = 1;
 
-function myTimerA () {
+function mySkateTimerA () {
 if (solSkateA == 1) {
-  $('#solenoidSkateA').text('Open').addClass('label-danger').removeClass('label-success');
+  $('#solenoidSkateA1').text('Open').addClass('label-danger').removeClass('label-success');
 } else if (solSkateA == 0) {
-  $('#solenoidSkateA').text('Closed').addClass('label-success').removeClass('label-danger');
+  $('#solenoidSkateA1').text('Closed').addClass('label-success').removeClass('label-danger');
   } else {
     console.log("Invalid SolenoidSkateA value");
   }
+  $('#solenoidSkateA2').text('current val here');
 }
 
-var myTimerIntB = setInterval (myTimerB, 1000);
+var myTimerIntB = setInterval (mySkateTimerB, 1000);
 var solSkateB = 1;
 
-function myTimerB () {
+function mySkateTimerB () {
 if (solSkateB == 1) {
-  $('#solenoidSkateB').text('Open').addClass('label-danger').removeClass('label-success');
+  $('#solenoidSkateB1').text('Open').addClass('label-danger').removeClass('label-success');
 } else if (solSkateB == 0) {
-  $('#solenoidSkateB').text('Closed').addClass('label-success').removeClass('label-danger');
+  $('#solenoidSkateB1').text('Closed').addClass('label-success').removeClass('label-danger');
   } else {
   console.log("Invalid SolenoidSkateB value");
   }
+  $('#solenoidSkateB2').text('current val here');
 }
 
-var myTimerIntC = setInterval (myTimerC, 1000);
+var myTimerIntC = setInterval (mySkateTimerC, 1000);
 var solSkateC = 1;
 
-function myTimerC () {
+function mySkateTimerC () {
 if (solSkateC == 1) {
-  $('#solenoidSkateC').text('Open').addClass('label-danger').removeClass('label-success');
+  $('#solenoidSkateC1').text('Open').addClass('label-danger').removeClass('label-success');
 } else if (solSkateC == 0) {
-  $('#solenoidSkateC').text('Closed').addClass('label-success').removeClass('label-danger');
+  $('#solenoidSkateC1').text('Closed').addClass('label-success').removeClass('label-danger');
   } else {
   console.log("Invalid SolenoidSkateC value");
   }
+  $('#solenoidSkateC2').text('current val here');
 }
 
-var myTimerIntD = setInterval (myTimerD, 1000);
+var myTimerIntD = setInterval (mySkateTimerD, 1000);
 var solSkateD = 1;
 
-function myTimerD () {
+function mySkateTimerD () {
 if (solSkateD == 1) {
-  $('#solenoidSkateD').text('Open').addClass('label-danger').removeClass('label-success');
+  $('#solenoidSkateD1').text('Open').addClass('label-danger').removeClass('label-success');
 } else if (solSkateD == 0) {
-  $('#solenoidSkateD').text('Closed').addClass('label-success').removeClass('label-danger');
+  $('#solenoidSkateD1').text('Closed').addClass('label-success').removeClass('label-danger');
   } else {
   console.log("Invalid SolenoidSkateD value");
   }
+  $('#solenoidSkateD2').text('current val here');
 }
 
-var myTimerIntE = setInterval (myTimerE, 1000);
+var myTimerIntE = setInterval (mySkateTimerE, 1000);
 var solSkateE = 1;
 
-function myTimerE () {
+function mySkateTimerE () {
 if (solSkateE == 1) {
-  $('#solenoidSkateE').text('Open').addClass('label-danger').removeClass('label-success');
+  $('#solenoidSkateE1').text('Open').addClass('label-danger').removeClass('label-success');
 } else if (solSkateE == 0) {
-  $('#solenoidSkateE').text('Closed').addClass('label-success').removeClass('label-danger');
+  $('#solenoidSkateE1').text('Closed').addClass('label-success').removeClass('label-danger');
   } else {
   console.log("Invalid SolenoidSkateE value");
   }
+  $('#solenoidSkateE2').text('current val here');
 }
 
-var myTimerIntF = setInterval (myTimerF, 1000);
+var myTimerIntF = setInterval (mySkateTimerF, 1000);
 var solSkateF = 1;
 
-function myTimerF () {
+function mySkateTimerF () {
 if (solSkateF == 1) {
-  $('#solenoidSkateF').text('Open').addClass('label-danger').removeClass('label-success');
+  $('#solenoidSkateF1').text('Open').addClass('label-danger').removeClass('label-success');
 } else if (solSkateF == 0) {
-  $('#solenoidSkateF').text('Closed').addClass('label-success').removeClass('label-danger');
+  $('#solenoidSkateF1').text('Closed').addClass('label-success').removeClass('label-danger');
   } else {
   console.log("Invalid SolenoidSkateF value");
+  }
+  $('#solenoidSkateF2').text('current val here');
+}
+
+var myTimerIntBrake1 = setInterval(myBrakeTimer1, 1000);
+var solBrake1 = 1;
+
+function myBrakeTimer1 () {
+  if (solBrake1 == 1){
+    $('#solenoidBrake1-1').text('Open').addClass('label-danger').removeClass('label-success');  
+  } else if (solBrake1 == 0) {
+    $('#solenoidBrake1-1').text('Closed').addClass('label-success').removeClass('label-danger');
+  } else {
+    console.log("Invalid solenoidBrake1 value")
+  }
+}
+
+var myTimerIntBrake2 = setInterval(myBrakeTimer2, 1000);
+var solBrake2 = 1;
+
+function myBrakeTimer2 () {
+  if (solBrake2 == 1){
+    $('#solenoidBrake2-1').text('Open').addClass('label-danger').removeClass('label-success');
+  } else if (solBrake1 == 0) {
+    $('#solenoidBrake2-1').text('Closed').addClass('label-success').removeClass('label-danger');
+  } else {
+    console.log("Invalid solenoidBrake2 value")
   }
 }
