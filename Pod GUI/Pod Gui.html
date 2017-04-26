@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" type= "text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="PodJS.js" type="text/javascript"></script>  
+  <script src="PodJS copy.js" type="text/javascript"></script>  
 </head>  
 <body>
 		<nav class="navbar navbar-inverse">
@@ -29,7 +29,7 @@
         <li><a href="#" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Commands<span class="caret"></span>
         		<ul class="dropdown-menu">
         			<li id="poweron" ><a onclick="poweron()" href="#">POWER ON</a></li>
-              <li id="lpfill"  ><a onclick="lpfill()" href="#">STATE LP FILL</a></li>
+              <li id="lpvent"  ><a onclick="lpvent()" href="#">STATE LP VENT</a></li>
               <li id="hpfill"  ><a onclick="hpfill()" href="#">STATE HP FILL</a></li>
         			<li id="armpod"  ><a onclick="armpod()" href="#">ARM THE POD</a></li>
               <li id="shutdown"><a onclick="shutdown()" href="#">SHUT DOWN</a></li>
@@ -45,25 +45,26 @@
   </div>  
 </nav>
 </body>
+<!-- Jumbotron with badge positioning and values for skates, brakes, tanks, and fill/vent. -->
 <div class="jumbotron">
   <div class="container">
     <span id="solenoidSkateE1" class="label label-success" style="position:absolute; top:41%; left:30%;">Closed</span>
-    <span id="solenoidSkateE2" class="label label-danger" style="position:absolute; top:41%; left:34%;">100%</span>
+    <span id="solenoidSkateE2" class="label label-primary" style="position:absolute; top:41%; left:34%;">100%</span>
     <span id="solenoidSkateC1" class="label label-success" style="position:absolute; top:41%; left:57%;">Closed</span>
-    <span id="solenoidSkateC2" class="label label-danger" style="position:absolute; top:41%; left:61%;">100%</span>
+    <span id="solenoidSkateC2" class="label label-primary" style="position:absolute; top:41%; left:61%;">100%</span>
     <span id="solenoidSkateA1" class="label label-success" style="position:absolute; top:41%; left:86%;">Closed</span>
-    <span id="solenoidSkateA2" class="label label-danger" style="position:absolute; top:41%; left:90%;">100%</span>
+    <span id="solenoidSkateA2" class="label label-primary" style="position:absolute; top:41%; left:90%;">100%</span>
     <span id="solenoidSkateF1" class="label label-success" style="position:absolute; top:57%; left:30%;">Closed</span>
-    <span id="solenoidSkateF2" class="label label-danger" style="position:absolute; top:57%; left:34%;">100%</span>
+    <span id="solenoidSkateF2" class="label label-primary" style="position:absolute; top:57%; left:34%;">100%</span>
     <span id="solenoidSkateD1" class="label label-success" style="position:absolute; top:57%; left:57%;">Closed</span>
-    <span id="solenoidSkateD2" class="label label-danger" style="position:absolute; top:57%; left:61%;">100%</span> 
+    <span id="solenoidSkateD2" class="label label-primary" style="position:absolute; top:57%; left:61%;">100%</span> 
     <span id="solenoidSkateB1" class="label label-success" style="position:absolute; top:57%; left:86%;">Closed</span>
-    <span id="solenoidSkateB2" class="label label-danger" style="position:absolute; top:57%; left:90%;">100%</span>
+    <span id="solenoidSkateB2" class="label label-primary" style="position:absolute; top:57%; left:90%;">100%</span>
     <span id="solenoidBrake2-1" class="label label-success" style="position:absolute; top:49.5%; left:45%;">Closed</span>
-    <span id="solenoidBrake2-2" class="label label-danger" style="position:absolute; top:49.5%; left:50%;">Engaged</span>
+    <span id="solenoidBrake2-2" class="label label-warning" style="position:absolute; top:49.5%; left:50%;">Engaged</span>
     <span id="solenoidBrake1-1" class="label label-success" style="position:absolute; top:49.5%; left:64.3%;">Closed</span>
-    <span id="solenoidBrake1-2" class="label label-danger" style="position:absolute; top:49.5%; left:69.5%;">Engaged</span>
-    <span id="lowPressureVent" class="label label-success" style="position:absolute; top:43%; left:18%;">Open</span>
+    <span id="solenoidBrake1-2" class="label label-warning" style="position:absolute; top:49.5%; left:69.5%;">Engaged</span>
+    <span id="lowPressureVent" class="label label-danger" style="position:absolute; top:43%; left:18%;">Open</span>
     <span id="highPressureFill" class="label label-success" style="position:absolute; top:67%; left:74%;">Closed</span>
   </div>
 </div>  
