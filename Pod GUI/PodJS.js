@@ -17,7 +17,7 @@ function poweron() {
 function lpvent() {
   lp_vent = {"command": "vent"};
         $.ajax({
-            url: "https://jsonplaceholder.typicode.com/posts",
+            url: "0.0.0.0:7777/command/lp_vent",
             data: lp_vent,
             type: 'POST',
             success: function(response) {
@@ -33,7 +33,7 @@ function lpvent() {
 function hpfill() {
   hp_fill = {"command": "fill"};
         $.ajax({
-            url: "https://jsonplaceholder.typicode.com/posts",
+            url: "0.0.0.0:7777/command/hp_fill",
             data: hp_fill,
             type: 'POST',
             success: function(response) {
@@ -49,7 +49,7 @@ function hpfill() {
 function armpod() {
   arm = {"command": "arm"};
         $.ajax({
-            url: "https://jsonplaceholder.typicode.com/posts",
+            url: "0.0.0.0:7777/command/arm",
             data: arm,
             type: 'POST',
             success: function(response) {
@@ -62,9 +62,35 @@ function armpod() {
   console.log('Arming the pod.')
 }
 
+// Shutdown command needs implementation and big red button. 
 function shutdown() {
 	console.log('Shutting the pod down.');
+  // POWER OFF FUNCTION WITH ASSOCIATED CONFIRMATION DIAGLOUE.
 }
+
+
+
+
+// Calibration command goes here (calibrate) zeros out IMU and nav data.
+// Needs button
+function calibrate() {
+  calib = {"command": "calibrate"};
+        $.ajax({
+            url: "",
+            data: calib,
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+}
+
+
+
+
 
 function ventstate() {
 	console.log('Taking user to the ventstate information.');
@@ -95,11 +121,11 @@ function flightprofile() {
 
 // Gets PodState JSON Blob and parses its data into variables.
 // Variables are accessed in the below functions to update the GUI.
-setInterval (updatePodState, 1000);
+setInterval (updatePodState, 10000);
 var podState; 
 function updatePodState () {
   $.ajax({
-            url: "0.0.0.0:7778/pod_State", // https://jsonplaceholder.typicode.com/posts
+            url: "0.0.0.0:7777/pod_State", // https://jsonplaceholder.typicode.com/posts
             type: 'GET',
             success: function(response) {
                 console.log(response);
@@ -223,3 +249,5 @@ function tester() {
   console.log(age);
 }
 */
+
+
