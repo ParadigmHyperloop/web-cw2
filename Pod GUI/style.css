@@ -17,3 +17,7 @@
     .navbar {
       margin-bottom: 0px;
     }
+    .analytics{
+      color: rgb(87, 97, 114);
+      text-decoration:underline;
+    }
