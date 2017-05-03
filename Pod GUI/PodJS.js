@@ -7,34 +7,25 @@ var ventState = document.getElementById("ventstate");
 var emergencyStop = document.getElementById("emergencystop");
 var telemetryData = document.getElementById("telemetrydata");
 var flightProfile = document.getElementById("flightprofile");
-var podPowered = true
 
 // Onclick functions for buttons on the NavBar.
-function poweron() {
-	console.log('Powering the pod on.');
-}
-
 function lpvent() {
-  lp_vent = {"command": "vent"};
         $.ajax({
             url: "0.0.0.0:7777/command/lp_vent",
-            data: lp_vent,
             type: 'POST',
             success: function(response) {
               console.log(response);
             },
             error: function(error) {
-                console.log("error func");
+                console.log(error);
             }
         });
   console.log('Current pod state = LPVENT.')
 }
 
 function hpfill() {
-  hp_fill = {"command": "fill"};
         $.ajax({
-            url: "0.0.0.0:7777/command/hp_fill",
-            data: hp_fill,
+            url: "0.0.0.0:7777/command/hp_fill", 
             type: 'POST',
             success: function(response) {
                 console.log(response);
@@ -47,10 +38,8 @@ function hpfill() {
 }
 
 function armpod() {
-  arm = {"command": "arm"};
         $.ajax({
             url: "0.0.0.0:7777/command/arm",
-            data: arm,
             type: 'POST',
             success: function(response) {
                 console.log(response);
@@ -64,20 +53,8 @@ function armpod() {
 
 // Shutdown command needs implementation and big red button. 
 function shutdown() {
-	console.log('Shutting the pod down.');
-  // POWER OFF FUNCTION WITH ASSOCIATED CONFIRMATION DIAGLOUE.
-}
-
-
-
-
-// Calibration command goes here (calibrate) zeros out IMU and nav data.
-// Needs button
-function calibrate() {
-  calib = {"command": "calibrate"};
         $.ajax({
-            url: "",
-            data: calib,
+            url: "0.0.0.0:7777/command/shutdown", 
             type: 'POST',
             success: function(response) {
                 console.log(response);
@@ -86,21 +63,27 @@ function calibrate() {
                 console.log(error);
             }
         });
+	console.log('Shutting the pod down.');
 }
 
-
-
-
-
-function ventstate() {
-	console.log('Taking user to the ventstate information.');
+// Calibration command goes here (calibrate) zeros out IMU and nav data.
+function calibrate() {
+        $.ajax({
+            url: "0.0.0.0:7777/command/calibrate",
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+  console.log('Calibrating Pod. Zeroing out IMU and nav data.')
 }
 
 function emergencystop() {
-  e_stop = {"command": "e"};
         $.ajax({
-            url: "https://jsonplaceholder.typicode.com/posts",
-            data: e_stop,
+            url: "0.0.0.0:7777/command/e",
             type: 'POST',
             success: function(response) {
                 console.log(response);
@@ -119,6 +102,10 @@ function flightprofile() {
 	console.log('Bringing the user to the flight profile data.')
 }
 
+function ventstate() {
+  console.log('Taking user to the ventstate information.');
+}
+
 // Gets PodState JSON Blob and parses its data into variables.
 // Variables are accessed in the below functions to update the GUI.
 setInterval (updatePodState, 10000);
@@ -133,7 +120,7 @@ function updatePodState () {
 
                 var solSkateA = podState.SOL_SKATE_0;
 
-                function mySkateTimerA () {
+                function SkateA_Update () {
                 if (solSkateA == 1) {
                   $('#solenoidSkateA1').text('Open').addClass('label-danger').removeClass('label-success');
                 } else if (solSkateA == 0) {
@@ -146,7 +133,7 @@ function updatePodState () {
 
                 var solSkateB = podState.SOL_SKATE_0;
 
-                function mySkateTimerB () {
+                function SkateB_Update () {
                 if (solSkateB == 1) {
                   $('#solenoidSkateB1').text('Open').addClass('label-danger').removeClass('label-success');
                 } else if (solSkateB == 0) {
@@ -159,7 +146,7 @@ function updatePodState () {
 
                 var solSkateC = podState.SOL_SKATE_1;
 
-                function mySkateTimerC () {
+                function SkateC_Update () {
                 if (solSkateC == 1) {
                   $('#solenoidSkateC1').text('Open').addClass('label-danger').removeClass('label-success');
                 } else if (solSkateC == 0) {
@@ -172,7 +159,7 @@ function updatePodState () {
 
                 var solSkateD = podState.SOL_SKATE_1;
 
-                function mySkateTimerD () {
+                function SkateD_Update () {
                 if (solSkateD == 1) {
                   $('#solenoidSkateD1').text('Open').addClass('label-danger').removeClass('label-success');
                 } else if (solSkateD == 0) {
@@ -185,7 +172,7 @@ function updatePodState () {
 
                 var solSkateE = podState.SOL_SKATE_2;
 
-                function mySkateTimerE () {
+                function SkateE_Update () {
                 if (solSkateE == 1) {
                   $('#solenoidSkateE1').text('Open').addClass('label-danger').removeClass('label-success');
                 } else if (solSkateE == 0) {
@@ -198,7 +185,7 @@ function updatePodState () {
 
                 var solSkateF = podState.SOL_SKATE_2;
 
-                function mySkateTimerF () {
+                function SkateF_Update () {
                 if (solSkateF == 1) {
                   $('#solenoidSkateF1').text('Open').addClass('label-danger').removeClass('label-success');
                 } else if (solSkateF == 0) {
@@ -211,7 +198,7 @@ function updatePodState () {
 
                 var solBrake1 = 1;
 
-                function myBrakeTimer1 () {
+                function Brake1_Update () {
                   if (solBrake1 == 1){
                     $('#solenoidBrake1-1').text('Open').addClass('label-danger').removeClass('label-success');  
                   } else if (solBrake1 == 0) {
@@ -223,14 +210,32 @@ function updatePodState () {
 
                 var solBrake2 = 1;
 
-                function myBrakeTimer2 () {
+                function Brake2_Update () {
                   if (solBrake2 == 1){
                     $('#solenoidBrake2-1').text('Open').addClass('label-danger').removeClass('label-success');
-                  } else if (solBrake1 == 0) {
+                  } else if (solBrake2 == 0) {
                     $('#solenoidBrake2-1').text('Closed').addClass('label-success').removeClass('label-danger');
                   } else {
                     console.log("Invalid solenoidBrake2 value")
                   }
+                }
+
+                var pressureTransducer = podState.hp_pressure
+
+                function psiTransducer_Update () {
+                  $('#psiTransducer').text(pressureTransducer);
+                }
+
+                var stripeCount = podState.stripe_count
+
+                function stripeCountUpdate () {
+                  $('stripeCount').text(stripeCount);
+                }
+
+                var approxDistance = stripeCount * 100
+
+                function approxDistanceUpdate () {
+                  $('approxDist').text(approxDistance);
                 }
             },
             error: function(error) {
@@ -238,16 +243,4 @@ function updatePodState () {
             }
         });
 }
-
-/*
-setInterval (tester, 1000);
-var nameObj;
-var age;
-function tester() {
-  window.nameObj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
-  window.age = nameObj.age;
-  console.log(age);
-}
-*/
-
 
