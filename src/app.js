@@ -8,10 +8,37 @@ var emergencyStop = document.getElementById("emergencystop");
 var telemetryData = document.getElementById("telemetrydata");
 var flightProfile = document.getElementById("flightprofile");
 
+var CONFIG = {
+  host: "127.0.0.1",
+  port: 7777,
+  proto: "http"
+}
+
+STATES = {
+  0 : { name: 'POST', color: 'default' },
+  1 : { name: 'Boot', color: 'default' },
+  2 : { name: 'LP Fill', color: 'primary' },
+  3 : { name: 'HPFILL', color: 'primary' },
+  4 : { name: 'LOAD', color: 'primary' },
+  5 : { name: 'STANDBY', color: 'default' },
+  6 : { name: 'ARMED', color: 'warning' },
+  7 : { name: 'PUSHING', color: 'warning' },
+  8 : { name: 'COASTING', color: 'warning' },
+  9 : { name: 'BRAKING', color: 'warning' },
+  10 : { name: 'VENT', color: 'warning' },
+  11 : { name: 'RETRIEVAL', color: 'success' },
+  12 : { name: 'EMERGENCY', color: 'danger' },
+  13 : { name: 'SHUTDOWN', color: 'default' }
+}
+
+function endpoint(path) {
+  return CONFIG.proto + "://" + CONFIG.host + ":" + CONFIG.port.toString() + "/" + path;
+}
+
 // Onclick functions for buttons on the NavBar.
 function lpvent() {
     $.ajax({
-        url: "0.0.0.0:7777/command/lp_vent",
+        url: endpoint("command/lp_vent"),
         type: 'POST',
         success: function(response) {
             console.log(response);
@@ -25,7 +52,7 @@ function lpvent() {
 
 function hpfill() {
     $.ajax({
-        url: "0.0.0.0:7777/command/hp_fill",
+        url: endpoint("command/hp_fill"),
         type: 'POST',
         success: function(response) {
             console.log(response);
@@ -39,7 +66,7 @@ function hpfill() {
 
 function armpod() {
     $.ajax({
-        url: "0.0.0.0:7777/command/arm",
+        url: endpoint("command/arm"),
         type: 'POST',
         success: function(response) {
             console.log(response);
@@ -54,7 +81,7 @@ function armpod() {
 // Shutdown command needs implementation and big red button.
 function shutdown() {
     $.ajax({
-        url: "0.0.0.0:7777/command/shutdown",
+        url: endpoint("command/shutdown"),
         type: 'POST',
         success: function(response) {
             console.log(response);
@@ -69,7 +96,7 @@ function shutdown() {
 // Calibration command goes here (calibrate) zeros out IMU and nav data.
 function calibrate() {
     $.ajax({
-        url: "0.0.0.0:7777/command/calibrate",
+        url: endpoint("command/calibrate"),
         type: 'POST',
         success: function(response) {
             console.log(response);
@@ -83,7 +110,7 @@ function calibrate() {
 
 function emergencystop() {
     $.ajax({
-        url: "0.0.0.0:7777/command/e",
+        url: endpoint("command/e"),
         type: 'POST',
         success: function(response) {
             console.log(response);
@@ -103,142 +130,120 @@ function flightprofile() {
     console.log('Bringing the user to the flight profile data.')
 }
 
-function ventstate() {
-    console.log('Taking user to the ventstate information.');
-}
-
 // Gets PodState JSON Blob and parses its data into variables.
 // Variables are accessed in the below functions to update the GUI.
-setInterval(updatePodState, 10000);
+setInterval(updatePodState, 1000);
 var podState;
+
+function update_pod_state(num) {
+  console.log("state number: " + num.toString())
+
+  var state = STATES[num]
+  console.log("state: " + state.name + " " + state.color)
+  $('#podState').text(state.name).addClass("badge-" + state.color)
+
+  colors = ['primary', 'default', 'danger', 'warning', 'success', 'info']
+  for (var i in colors) {
+    if (colors[i] != state.color) {
+      $('#podState').removeClass("badge-" + colors[i])
+      console.log("removed badge-" + colors[i])
+
+    }
+  }
+}
+
+function update_badge_valve_nc(id, value) {
+    if (value == 1) {
+        $(id).text('Open').addClass('badge-danger').removeClass('badge-success');
+        console.log("Valve " + id + " Open")
+    } else {
+        $(id).text('Closed').addClass('badge-success').removeClass('badge-danger');
+        console.log("Valve " + id + " Closed")
+    }
+}
+
+function update_badge_valve_no(id, value) {
+  update_badge_valve_nc(id, !value);
+}
+
+function update_badge_valve_brake(id, value_rel, value_eng) {
+  if (value_eng == 0 && value_rel == 0) {
+      $(id).text('Closed').addClass('badge-success').removeClass('badge-warning').removeClass('badge-danger').removeClass('badge-primary');
+      console.log("Brake " + id + " is Closed")
+  } else if (value_eng == 1 && value_rel == 0) {
+      $(id).text('Engaged').addClass('badge-warning').removeClass('badge-success').removeClass('badge-danger').removeClass('badge-primary');
+      console.log("Brake " + id + " is Engaged")
+  } else if (value_eng == 0 && value_rel == 1) {
+      $(id).text('Released').addClass('badge-primary').removeClass('badge-success').removeClass('badge-danger').removeClass('badge-warning');
+      console.log("Brake " + id + " is Released")
+  } else {
+      $(id).text('Error').addClass('badge-danger').removeClass('badge-success').removeClass('badge-warning');
+      console.log("Brake " + id + " is Error: eng:" + value_eng.toString() + " rel:" + value_rel.toString())
+  }
+}
+
+function valid_valve_value(value) {
+  return (value === 1 || value  === 0)
+}
 
 function updatePodState() {
     $.ajax({
-        url: "0.0.0.0:7777/pod_State", // https://jsonplaceholder.typicode.com/posts
+        url: endpoint("pod_State"),
         type: 'GET',
         success: function(response) {
             console.log(response);
             podState = JSON.parse(response);
 
-            var solSkateA = podState.SOL_SKATE_0;
-
-            function SkateA_Update() {
-                if (solSkateA == 1) {
-                    $('#solenoidSkateA1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solSkateA == 0) {
-                    $('#solenoidSkateA1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid SolenoidSkateA value");
-                }
-                $('#solenoidSkateA2').text('current val here');
+            var new_values = {
+              nc: {
+                '#solenoidSkateA1' : podState.SOL_SKATE_0,
+                '#solenoidSkateB1' : podState.SOL_SKATE_0,
+                '#solenoidSkateC1' : podState.SOL_SKATE_1,
+                '#solenoidSkateD1' : podState.SOL_SKATE_1,
+                '#solenoidSkateE1' : podState.SOL_SKATE_2,
+                '#solenoidSkateF1' : podState.SOL_SKATE_2,
+                '#highPressureFill' : podState.SOL_HPFIL,
+                '#solenoidBrake1-1' : podState.SOL_CLAMP_FIL_0,
+                '#solenoidBrake2-1' : podState.SOL_CLAMP_FIL_1
+              },
+              no: {
+                '#lowPressureVent' : podState.SOL_VENT
+              },
+              brake: {
+                '#solenoidBrake1-2' : [
+                  podState.SOL_CLAMP_REL_0,
+                  podState.SOL_CLAMP_ENG_0
+                ],
+                '#solenoidBrake2-2' : [
+                  podState.SOL_CLAMP_REL_1,
+                  podState.SOL_CLAMP_ENG_1
+                ]
+              }
             }
 
-            var solSkateB = podState.SOL_SKATE_0;
-
-            function SkateB_Update() {
-                if (solSkateB == 1) {
-                    $('#solenoidSkateB1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solSkateB == 0) {
-                    $('#solenoidSkateB1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid SolenoidSkateB value");
-                }
-                $('#solenoidSkateB2').text('current val here');
+            for (var key in new_values['nc']) {
+              update_badge_valve_nc(key, new_values['nc'][key]);
             }
 
-            var solSkateC = podState.SOL_SKATE_1;
-
-            function SkateC_Update() {
-                if (solSkateC == 1) {
-                    $('#solenoidSkateC1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solSkateC == 0) {
-                    $('#solenoidSkateC1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid SolenoidSkateC value");
-                }
-                $('#solenoidSkateC2').text('current val here');
+            for (var key in new_values['no']) {
+              update_badge_valve_no(key, new_values['no'][key]);
             }
 
-            var solSkateD = podState.SOL_SKATE_1;
-
-            function SkateD_Update() {
-                if (solSkateD == 1) {
-                    $('#solenoidSkateD1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solSkateD == 0) {
-                    $('#solenoidSkateD1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid SolenoidSkateD value");
-                }
-                $('#solenoidSkateD2').text('current val here');
-            }
-
-            var solSkateE = podState.SOL_SKATE_2;
-
-            function SkateE_Update() {
-                if (solSkateE == 1) {
-                    $('#solenoidSkateE1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solSkateE == 0) {
-                    $('#solenoidSkateE1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid SolenoidSkateE value");
-                }
-                $('#solenoidSkateE2').text('current val here');
-            }
-
-            var solSkateF = podState.SOL_SKATE_2;
-
-            function SkateF_Update() {
-                if (solSkateF == 1) {
-                    $('#solenoidSkateF1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solSkateF == 0) {
-                    $('#solenoidSkateF1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid SolenoidSkateF value");
-                }
-                $('#solenoidSkateF2').text('current val here');
-            }
-
-            var solBrake1 = 1;
-
-            function Brake1_Update() {
-                if (solBrake1 == 1) {
-                    $('#solenoidBrake1-1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solBrake1 == 0) {
-                    $('#solenoidBrake1-1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid solenoidBrake1 value")
-                }
-            }
-
-            var solBrake2 = 1;
-
-            function Brake2_Update() {
-                if (solBrake2 == 1) {
-                    $('#solenoidBrake2-1').text('Open').addClass('label-danger').removeClass('label-success');
-                } else if (solBrake2 == 0) {
-                    $('#solenoidBrake2-1').text('Closed').addClass('label-success').removeClass('label-danger');
-                } else {
-                    console.log("Invalid solenoidBrake2 value")
-                }
+            for (var key in new_values['brake']) {
+              update_badge_valve_brake(key, new_values['brake'][key][0], new_values['brake'][key][1]);
             }
 
             var pressureTransducer = podState.hp_pressure
-
-            function psiTransducer_Update() {
-                $('#psiTransducer').text(pressureTransducer);
-            }
+            $('#psiTransducer').text(pressureTransducer);
 
             var stripeCount = podState.stripe_count
+            $('#stripeCount').text(stripeCount);
 
-            function stripeCountUpdate() {
-                $('stripeCount').text(stripeCount);
-            }
 
-            var approxDistance = stripeCount * 100
+            var approxDistance = podState.position_x
+            $('#approxDist').text(approxDistance);
 
-            function approxDistanceUpdate() {
-                $('approxDist').text(approxDistance);
-            }
+            update_pod_state(podState.state)
         },
         error: function(error) {
             console.log(error);

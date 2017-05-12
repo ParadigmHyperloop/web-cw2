@@ -37,7 +37,10 @@
       <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Pod Dashboard</a>
+      <a class="navbar-brand" href="#">
+        <img src="icons/paradigm-geometry-11.png" width="35" height="35" alt="Paradigm Hyperloop"/>
+        Paradigm
+      </a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
@@ -55,19 +58,16 @@
               Commands
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" onclick="poweron()" href="#">POWER ON</a>
-              <a class="dropdown-item" onclick="lpvent()" href="#">STATE LP VENT</a>
-              <a class="dropdown-item" onclick="hpfill()" href="#">STATE HP FILL</a>
-              <a class="dropdown-item" onclick="armpod()" href="#">ARM THE POD</a>
-              <a class="dropdown-item" onclick="calibrate()" href="#">CALIBRATE</a>
+              <a class="dropdown-item" onclick="poweron()" href="#">Power On</a>
+              <a class="dropdown-item" onclick="lpvent()" href="#">Vent</a>
+              <a class="dropdown-item" onclick="hpfill()" href="#">HP Fill</a>
+              <a class="dropdown-item" onclick="armpod()" href="#">Arm</a>
+              <hr>
+              <a class="dropdown-item" onclick="calibrate()" href="#">Calibrate</a>
             </div>
           </li>
-
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
-          <li id="ventstate" class="mr-4 nav-item">
-            <a class="nav-link" onclick="ventstate()" href="#">Vent State</a>
-          </li>
           <li class="mr-4 nav-item pull-right" id="emergencystop">
             <a class="btn btn-outline-danger my-2 my-sm-0" onclick="emergencystop()" href="#">Emergency Stop</a>
           </li>
@@ -98,50 +98,74 @@
               <a class="nav-link"><span id="stripeCount" class="nav-metric badge badge-primary">0</span> Stripe Count</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"><span id="approxDist" class="nav-metric badge badge-primary">0</span> Approx Distance (ft)</a>
+              <a class="nav-link"><span id="approxDist" class="nav-metric badge badge-primary">0</span> Approx Distance (m)</a>
             </li>
           </ul>
         </nav>
 
+
+
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" role="main">
-          <h1>Dashboard</h1>
+
+          <section class="row border-under">
+            <div class="col-md-3">
+              <h1 class="borderless">Dashboard</h1>
+            </div>
+            <div class="col-md-5">
+              <h1 class="borderless"><span id="podState" class="badge badge-pill badge-default">Disconnected</span></h1>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-3x fa-battery-three-quarters text-success"></i>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-3x fa-thermometer-three-quarters text-warning"></i>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-3x fa-wifi text-success"></i>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-3x fa-bell text-success"></i>
+            </div>
+
+
+          </section>
 
           <section class="row text-center placeholders pod">
-            <span id="solenoidSkateE1" class="badge badge-success" style="position:absolute; top:41%; left:30%;">Closed</span>
+            <span id="solenoidSkateE1" class="badge badge-success" style="position:absolute; top:46%; left:30%;"></span>
             <!-- Solenoid Skate -->
-            <span id="solenoidSkateE2" class="badge badge-primary" style="position:absolute; top:41%; left:34%;">100%</span>
+            <!-- <span id="solenoidSkateE2" class="badge badge-primary" style="position:absolute; top:46%; left:34%;">100%</span> -->
             <!-- MPYE Reading -->
-            <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:41%; left:57%;">Closed</span>
+            <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:46%; left:57%;"></span>
             <!-- Solenoid Skate -->
-            <span id="solenoidSkateC2" class="badge badge-primary" style="position:absolute; top:41%; left:61%;">100%</span>
+            <!-- <span id="solenoidSkateC2" class="badge badge-primary" style="position:absolute; top:46%; left:61%;">100%</span> -->
             <!-- MPYE Reading -->
-            <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:41%; left:86%;">Closed</span>
+            <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:46%; left:86%;"></span>
             <!-- Solenoid Skate -->
-            <span id="solenoidSkateA2" class="badge badge-primary" style="position:absolute; top:41%; left:90%;">100%</span>
+            <!-- <span id="solenoidSkateA2" class="badge badge-primary" style="position:absolute; top:46%; left:90%;">100%</span> -->
             <!-- MPYE Reading -->
-            <span id="solenoidSkateF1" class="badge badge-success" style="position:absolute; top:57%; left:30%;">Closed</span>
+            <span id="solenoidSkateF1" class="badge badge-success" style="position:absolute; top:61%; left:30%;"></span>
             <!-- Solenoid Skate -->
-            <span id="solenoidSkateF2" class="badge badge-primary" style="position:absolute; top:57%; left:34%;">100%</span>
+            <!-- <span id="solenoidSkateF2" class="badge badge-primary" style="position:absolute; top:61%; left:34%;">100%</span> -->
             <!-- MPYE Reading -->
-            <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:57%; left:57%;">Closed</span>
+            <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:61%; left:57%;"></span>
             <!-- Solenoid Skate -->
-            <span id="solenoidSkateD2" class="badge badge-primary" style="position:absolute; top:57%; left:61%;">100%</span>
+            <!-- <span id="solenoidSkateD2" class="badge badge-primary" style="position:absolute; top:61%; left:61%;">100%</span> -->
             <!-- MPYE Reading -->
-            <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:57%; left:86%;">Closed</span>
+            <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:61%; left:86%;"></span>
             <!-- Solenoid Skate -->
-            <span id="solenoidSkateB2" class="badge badge-primary" style="position:absolute; top:57%; left:90%;">100%</span>
+            <!-- <span id="solenoidSkateB2" class="badge badge-primary" style="position:absolute; top:61%; left:90%;">100%</span> -->
             <!-- MPYE Reading -->
-            <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:49.5%; left:45%;">Closed</span>
+            <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:54%; left:45%;"></span>
             <!-- Brake: Closed or Open -->
-            <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:49.5%; left:50%;">Engaged</span>
+            <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:54%; left:50%;"></span>
             <!-- Closed Engaged or Released -->
-            <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:49.5%; left:64.3%;">Closed</span>
+            <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:54%; left:64.3%;"></span>
             <!-- Brake: Closed or Open -->
-            <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:49.5%; left:69.5%;">Engaged</span>
+            <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:54%; left:69.5%;"></span>
             <!-- Closed Engaged or Released -->
-            <span id="lowPressureVent" class="badge badge-danger" style="position:absolute; top:43%; left:18%;">Open</span>
+            <span id="lowPressureVent" class="badge badge-danger" style="position:absolute; top:46%; left:18%;"></span>
             <!-- LP_VENT: Open or Closed -->
-            <span id="highPressureFill" class="badge badge-success" style="position:absolute; top:67%; left:74%;">Closed</span>
+            <span id="highPressureFill" class="badge badge-success" style="position:absolute; top:67%; left:74%;"></span>
             <!-- HP_FILL: Closed or Open -->
           </section>
         </main>
@@ -174,6 +198,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
