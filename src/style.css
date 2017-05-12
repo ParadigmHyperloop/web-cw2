@@ -4,6 +4,13 @@
         height: auto;
     }
 }
+
+body {
+  background: #000;
+  background: -webkit-linear-gradient(to bottom, #000000, #434343);
+  background: linear-gradient(to bottom, #000000, #434343);
+}
+
 .pod {
     background: url("podtopview.png") no-repeat center center fixed;
     background-size: cover;
@@ -31,10 +38,6 @@
 .sidenav {
     padding: 20px;
     width: 250px;
-    height: 325px;
-    background: #000;
-    background: -webkit-linear-gradient(to bottom, #000000, #434343);
-    background: linear-gradient(to bottom, #000000, #434343);
 }
 .dropdown-menu {
     background: #222;
