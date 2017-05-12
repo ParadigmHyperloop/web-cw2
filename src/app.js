@@ -78,7 +78,7 @@ function armpod() {
     console.log('Arming the pod.')
 }
 
-// Shutdown command needs implementation and big red button.
+// Shutdown command needs implementation and big red button. 
 function shutdown() {
     $.ajax({
         url: endpoint("command/shutdown"),
@@ -123,11 +123,10 @@ function emergencystop() {
 };
 
 function telemetrydata() {
-    console.log('Bringing the user to the telemetry data graphs.')
+	console.log('Bringing the user to the telemetry data graphs.')
 }
-
 function flightprofile() {
-    console.log('Bringing the user to the flight profile data.')
+	console.log('Bringing the user to the flight profile data.')
 }
 
 // Gets PodState JSON Blob and parses its data into variables.
@@ -250,3 +249,4 @@ function updatePodState() {
         }
     });
 }
+
