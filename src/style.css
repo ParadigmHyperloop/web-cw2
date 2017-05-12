@@ -4,7 +4,7 @@
         height: auto;
     }
 }
-.jumbotron {
+.pod {
     background: url("podtopview.png") no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
@@ -29,14 +29,12 @@
     margin-top: 0px;
 }
 .sidenav {
-    border: 2px solid #222;
     padding: 20px;
     width: 250px;
     height: 325px;
-    border-radius: 0px 0px 5px 5px;
-    background: #000000;
+    background: #000;
     background: -webkit-linear-gradient(to bottom, #000000, #434343);
-    background: linear-gradient(to bottom, #222, #222);
+    background: linear-gradient(to bottom, #000000, #434343);
 }
 .dropdown-menu {
     background: #222;
