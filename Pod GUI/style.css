@@ -16,8 +16,33 @@
     }
     .navbar {
       margin-bottom: 0px;
+      border-radius: 0px 0px 0px 0px;
+      border-color: #222;
     }
-    .analytics{
-      color: rgb(87, 97, 114);
-      text-decoration:underline;
+    .analytics {
+      color: #9d9d9d;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 40px;
+      text-align: center;
+      margin-top: 0px;
     }
+    .sidenav {
+      border: 2px solid #222;
+      padding: 20px;
+      width: 250px;
+      height: 325px;
+      border-radius: 0px 0px 5px 5px;
+      background: #000000; 
+      background: -webkit-linear-gradient(to bottom, #000000, #434343); 
+      background: linear-gradient(to bottom, #222, #222); 
+    }
+    .dropdown-menu {
+      background: #222;
+    }
+    .dropdown-menu>li>a {
+      color: #9d9d9d;
+    }
+    .navText {
+      color: #9d9d9d;
+    }
+    
