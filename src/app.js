@@ -152,6 +152,11 @@ function update_pod_state(num) {
 }
 
 function update_badge_valve_nc(id, value) {
+    if (!valid_valve_value(value)) {
+      console.log("Valve: " + id + " has invalid values")
+      return;
+    }
+
     if (value == 1) {
         $(id).text('Open').addClass('badge-danger').removeClass('badge-success');
         console.log("Valve " + id + " Open")
@@ -166,6 +171,11 @@ function update_badge_valve_no(id, value) {
 }
 
 function update_badge_valve_brake(id, value_rel, value_eng) {
+  if (!valid_valve_value(value_rel) || !valid_valve_value(value_eng)) {
+    console.log("Valve: " + id + " has invalid values")
+    return;
+  }
+
   if (value_eng == 0 && value_rel == 0) {
       $(id).text('Closed').addClass('badge-success').removeClass('badge-warning').removeClass('badge-danger').removeClass('badge-primary');
       console.log("Brake " + id + " is Closed")
@@ -187,7 +197,7 @@ function valid_valve_value(value) {
 
 function updatePodState() {
     $.ajax({
-        url: endpoint("pod_State"),
+        url: endpoint("state"),
         type: 'GET',
         success: function(response) {
             console.log(response);
