@@ -8,6 +8,8 @@ List of additions to make:
  - Finish creating buttons for necessary Pod Core function. 
  - More labels for new sensors being implemented in near future (MPYE Functionality).
  - Cosmetic updates along the way.
+ - Loading screen animation
+ 
  
 # Screenshots
 
