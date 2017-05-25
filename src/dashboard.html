@@ -48,28 +48,28 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li id="telemetrydata" class="nav-item">
-            <a class="nav-link" onclick="telemetrydata()" href="#">Telemetry Data</a>
+            <a id="telemetryDataBtn" class="nav-link" href="#">Telemetry Data</a>
           </li>
           <li id="flightprofile" class="nav-item">
-            <a class="nav-link" onclick="flightprofile()" href="#">Flight Profile</a>
+            <a id="flightProfileBtn" class="nav-link" href="#">Flight Profile</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="commandDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Commands
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" onclick="poweron()" href="#">Power On</a>
-              <a class="dropdown-item" onclick="lpvent()" href="#">Vent</a>
-              <a class="dropdown-item" onclick="hpfill()" href="#">HP Fill</a>
-              <a class="dropdown-item" onclick="armpod()" href="#">Arm</a>
+              <a class="dropdown-item" id="powerOnBtn" href="#">Power On</a>
+              <a class="dropdown-item" id="lpVentBtn" href="#">Vent</a>
+              <a class="dropdown-item" id="hpFillBtn" href="#">HP Fill</a>
+              <a class="dropdown-item" id="armPodBtn" href="#">Arm</a>
               <hr>
-              <a class="dropdown-item" onclick="calibrate()" href="#">Calibrate</a>
+              <a class="dropdown-item" id="calibrateBtn" href="#">Calibrate</a>
             </div>
           </li>
         </ul>
         <ul class="navbar-nav mt-2 mt-lg-0">
-          <li class="mr-4 nav-item pull-right" id="emergencystop">
-            <a class="btn btn-outline-danger my-2 my-sm-0" onclick="emergencystop()" href="#">Emergency Stop</a>
+          <li class="mr-4 nav-item pull-right" id="emergencyBtn">
+            <a class="btn btn-outline-danger my-2 my-sm-0" href="#">Emergency Stop</a>
           </li>
           <li class="nav-item" id="shutdown">
             <a class="nav-link" data-toggle="modal" data-target="#shutDownModal" href="#"><i class="fa fa-power-off"></i></a>
@@ -183,7 +183,7 @@
                     <p>Are you sure you want to shut down the pod? This action cannot be undone.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="shutdown()" class="btn btn-danger" data-dismiss="modal">CONFIRM SHUTDOWN</button>
+                    <button id="shutdownBtn" type="button" class="btn btn-danger" data-dismiss="modal">CONFIRM SHUTDOWN</button>
                 </div>
             </div>
         </div>
@@ -201,5 +201,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="app.js"></script>
+
   </body>
 </html>
