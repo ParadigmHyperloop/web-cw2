@@ -57,9 +57,11 @@ function endpoint(path) {
         dataType: "json",
         success: function(response) {
             console.log(response);
+            alert(response.msg);
         },
         error: function(error) {
             console.log(error);
+            alert(error);
         }
     });
   }
@@ -68,6 +70,10 @@ function endpoint(path) {
     // Onclick functions for buttons on the NavBar.
     $('#lpVentBtn').on('click', function () {
       send_command(["vent"])
+    })
+
+    $('#lpFillBtn').on('click', function () {
+      send_command(["fill", "lp"])
     })
 
     $('#hpFillBtn').on('click', function () {
