@@ -1,13 +1,3 @@
-// var powerOn = document.getElementById("poweron");
-// var lpFill = document.getElementById("lpfill");
-// var hpFill = document.getElementById("hpfill");
-// var armPod = document.getElementById("armpod");
-// var shutDown = document.getElementById("shutdown");
-// var ventState = document.getElementById("ventstate");
-// var emergencyStop = document.getElementById("emergencystop");
-// var telemetryData = document.getElementById("telemetrydata");
-// var flightProfile = document.getElementById("flightprofile");
-
 var CONFIG = {
   host: "127.0.0.1",
   port: 7777,
@@ -33,6 +23,145 @@ STATES = {
   13 : { name: 'SHUTDOWN', color: 'default' }
 }
 
+/* Sensors */
+__CACHED_SENSORS = undefined
+
+function get_sensors() {
+  if (__CACHED_SENSORS === undefined) {
+    $.get(endpoint('sensors'), function (response) {
+      __CACHED_SENSORS = response
+    });
+    return {}
+  }
+  return __CACHED_SENSORS
+}
+
+BATTERY_CLASSES = [
+  "fa-battery-empty",
+  "fa-battery-one-quarters",
+  "fa-battery-half",
+  "fa-battery-three-quarters",
+  "fa-battery-full",
+  "text-success",
+  "text-warning",
+  "text-danger"
+]
+BATTERY_STATES = {
+  "fa-battery-empty text-danger fa-blink" : function (x) { return (x < 28.0); },
+  "fa-battery-one-quarter text-danger" : function (x) { return (x >= 28.0 && x < 30.0); },
+  "fa-battery-half text-warning" : function (x) { return (x >= 30.0 && x < 33.0); },
+  "fa-battery-three-quarters text-success" : function (x) { return (x >= 33.0 && x < 37.0); },
+  "fa-battery-full text-success" : function (x) { return (x >= 37.0 && x < 43.0); },
+  "fa-battery-full text-danger" : function (x) { return (x >= 43.0); }
+}
+
+LAST_TIMESTAMP = 0
+
+function get_battery_class(voltage) {
+  for (cls in BATTERY_STATES) {
+    if (BATTERY_STATES[cls](voltage)) {
+      return cls
+    }
+  }
+}
+
+function update_battery(elem, current, voltage) {
+  if (current === undefined || voltage === undefined) {
+    return;
+  }
+
+  var classes = get_battery_class(voltage).split(' ');
+  for (i in BATTERY_CLASSES) {
+    cls = BATTERY_CLASSES[i]
+    if (elem.hasClass(cls) && !(cls in classes)) {
+      elem.removeClass(cls)
+    }
+  }
+  for (i in classes) {
+    elem.addClass(classes[i])
+  }
+}
+
+
+function create_sensor_row(id, sensor) {
+  var row = $('<tr/>').attr('id', 'sensorRow_' + id)
+  row.append($('<td/>').addClass('sensor-name').text(sensor.name))
+  row.append($('<td/>').addClass('sensor-value').text('value').data('unit', sensor.unit))
+  row.append($('<td/>').addClass('sensor-warnings'))
+
+  var actions = $('<td/>').addClass('sensor-actions')
+
+  var offsetBtn = $('<a/>').addClass('btn btn-info').text('offset')
+  offsetBtn.on('click', function () {
+    $('#offsetModal').data('sensor_id', id)
+    $('#offsetModal').find('.modal-title').text('Offset ' + id)
+    $('#offsetModal').modal('show')
+  })
+  actions.append(offsetBtn)
+  row.append(actions)
+
+  $('#sensorTable tbody').append(row)
+}
+
+function get_sensor_threshold(val, sensor) {
+  for (threshold in sensor.thresholds) {
+    bounds = sensor.thresholds[threshold]
+
+    if (bounds[0] === undefined && bounds[1] == undefined) {
+      return threshold
+    } else if (bounds[0] === undefined && val <= bounds[1]) {
+      return threshold
+    } else if (val > bounds[0] && bounds[1] === undefined) {
+      return threshold
+    } else if (val > bounds[0] && val <= bounds[1]) {
+      return threshold
+    }
+  }
+}
+
+function update_sensor_table(state) {
+  var sensors = get_sensors()
+  for (id in sensors) {
+    if (id in state) {
+
+      var row = $('#sensorRow_' + id)
+      if (row.length == 0) {
+        create_sensor_row(id, sensors[id]);
+        row = $('#sensorRow_' + id)
+      }
+
+      var val = state[id]
+      var name = sensors[id].name
+      var desc = sensors[id].description
+      var units = sensors[id].units
+      $(row.find('.sensor-value')).text(val)
+
+      var threshold = get_sensor_threshold(val, sensors[id])
+
+    }
+  }
+}
+
+function update_ping(elem, timestamp) {
+  if (timestamp == undefined) {
+    return;
+  }
+
+  if (LAST_TIMESTAMP == 0) {
+    LAST_TIMESTAMP = timestamp;
+    return
+  }
+
+  var diff = (timestamp - LAST_TIMESTAMP) / 1000000.0;
+  console.log(diff);
+  if (diff <= 2.0 && diff >= 0) {
+    elem.removeClass('text-danger').removeClass('text-warning').addClass('text-success')
+  } else {
+    elem.removeClass('text-success').removeClass('text-warning').addClass('text-danger')
+  }
+  LAST_TIMESTAMP = timestamp;
+}
+
 function endpoint(path) {
   return CONFIG.proto + "://" + CONFIG.host + ":" + CONFIG.port.toString() + "/" + path;
 }
@@ -46,7 +175,9 @@ function endpoint(path) {
     if (cmd.length > 1) {
       args = cmd.slice(1)
     }
-
+    $("#podResponseArgs").text(cmd.join(' '))
+    $("#podResponseModal").modal('show')
+    $("#podResponseContent").html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>')
     $.ajax({
         url: endpoint("commands/" + name),
         method: 'POST',
@@ -57,11 +188,15 @@ function endpoint(path) {
         dataType: "json",
         success: function(response) {
             console.log(response);
-            alert(response.msg);
+            if (response.msg === undefined) {
+              $("#podResponseContent").html('<div class="alert alert-danger">Command failed to execute</div>')
+            } else {
+              $("#podResponseContent").text(response.msg)
+            }
         },
         error: function(error) {
             console.log(error);
-            alert(error);
+            $("#podResponseContent").html('<div class="alert alert-danger">HTTP Error occured durring execution</div>')
         }
     });
   }
@@ -84,18 +219,28 @@ function endpoint(path) {
       send_command(["arm"])
     })
 
-    // Shutdown command needs implementation and big red button.
+    $('#helpBtn').on('click', function () {
+      send_command(["help"])
+    })
+
     $('#shutdownBtn').on('click', function () {
       send_command(["shutdown"])
     })
 
-    // Calibration command goes here (calibrate) zeros out IMU and nav data.
+    $('#resetBtn').on('click', function () {
+      send_command(["reset"])
+    })
+
     $('#calibrateBtn').on('click', function () {
       send_command(["calibrate"])
     })
 
     $('#emergencyBtn').on('click', function () {
       send_command(["emergency"])
+    })
+
+    $('#setOffsetBtn').on('click', function () {
+      send_command(["offset", $('#offsetModal').data('sensor_id'), $('#offsetInput').val()])
     })
 
     $('#telemetryDataBtn').on('click', function () {
@@ -126,7 +271,7 @@ function endpoint(path) {
     for (var i in colors) {
       if (colors[i] != state.color) {
         $('#podState').removeClass("badge-" + colors[i])
-        console.log("removed badge-" + colors[i])
+        // console.log("removed badge-" + colors[i])
 
       }
     }
@@ -134,21 +279,21 @@ function endpoint(path) {
 
   function update_badge_valve_nc(id, value) {
       if (!valid_valve_value(value)) {
-        console.log("Valve: " + id + " has invalid values")
+        console.log("Valve: " + id + " has invalid value: " + value.toString())
         return;
       }
 
       if (value == 1) {
           $(id).text('Open').addClass('badge-danger').removeClass('badge-success');
-          console.log("Valve " + id + " Open")
+          // console.log("Valve " + id + " Open")
       } else {
           $(id).text('Closed').addClass('badge-success').removeClass('badge-danger');
-          console.log("Valve " + id + " Closed")
+          // console.log("Valve " + id + " Closed")
       }
   }
 
   function update_badge_valve_no(id, value) {
-    update_badge_valve_nc(id, !value);
+    update_badge_valve_nc(id, value ? 0 : 1);
   }
 
   function update_badge_valve_brake(id, value_rel, value_eng) {
@@ -159,16 +304,16 @@ function endpoint(path) {
 
     if (value_eng == 0 && value_rel == 0) {
         $(id).text('Closed').addClass('badge-success').removeClass('badge-warning').removeClass('badge-danger').removeClass('badge-primary');
-        console.log("Brake " + id + " is Closed")
+        // console.log("Brake " + id + " is Closed")
     } else if (value_eng == 1 && value_rel == 0) {
         $(id).text('Engaged').addClass('badge-warning').removeClass('badge-success').removeClass('badge-danger').removeClass('badge-primary');
-        console.log("Brake " + id + " is Engaged")
+        // console.log("Brake " + id + " is Engaged")
     } else if (value_eng == 0 && value_rel == 1) {
         $(id).text('Released').addClass('badge-primary').removeClass('badge-success').removeClass('badge-danger').removeClass('badge-warning');
-        console.log("Brake " + id + " is Released")
+        // console.log("Brake " + id + " is Released")
     } else {
         $(id).text('Error').addClass('badge-danger').removeClass('badge-success').removeClass('badge-warning');
-        console.log("Brake " + id + " is Error: eng:" + value_eng.toString() + " rel:" + value_rel.toString())
+        // console.log("Brake " + id + " is Error: eng:" + value_eng.toString() + " rel:" + value_rel.toString())
     }
   }
 
@@ -228,11 +373,17 @@ function endpoint(path) {
               var stripeCount = podState.stripe_count
               $('#stripeCount').text(stripeCount);
 
-
               var approxDistance = podState.position_x
               $('#approxDist').text(approxDistance);
 
-              update_pod_state(podState.state)
+              update_battery($('#battery0'), podState.current_0, podState.voltage_0);
+              update_battery($('#battery1'), podState.current_1, podState.voltage_1);
+              update_battery($('#battery2'), podState.current_2, podState.voltage_2);
+
+              update_ping($('#wifiIcon'), podState.timestamp);
+              update_pod_state(podState.state);
+
+              update_sensor_table(podState);
           },
           error: function(error) {
               console.log(error);

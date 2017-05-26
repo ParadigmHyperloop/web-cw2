@@ -88,6 +88,7 @@ h1 {
      height: 93.8vh;
      border: 1px solid #eee;
      margin-bottom: 0px;
+     position: relative;
  }
 
  /* Placeholders */
@@ -98,4 +99,20 @@ h1 {
 .placeholder img {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+@keyframes fa-blink {
+    0% { opacity: 1; }
+    40% { opacity: .8; }
+    50% { opacity: 0; }
+    60% { opacity: .8; }
+    100% { opacity: 1; }
+}
+
+.fa-blink {
+  -webkit-animation: fa-blink 1s linear infinite;
+  -moz-animation: fa-blink 1s linear infinite;
+  -ms-animation: fa-blink 1s linear infinite;
+  -o-animation: fa-blink 1s linear infinite;
+  animation: fa-blink 1s linear infinite;
 }
