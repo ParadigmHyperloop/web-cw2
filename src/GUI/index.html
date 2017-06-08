@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Paradigm Hyperloop</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="icons/fontawesome/css/font-awesome.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img src="icons/paradigm-geometry-11.png" width="35" height="35" alt="Paradigm Hyperloop"/>
+        Paradigm
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li id="telemetrydata" class="nav-item">
+            <a id="telemetryDataBtn" class="nav-link" href="#">Telemetry Data</a>
+          </li>
+          <li id="flightprofile" class="nav-item">
+            <a id="flightProfileBtn" class="nav-link" href="#">Flight Profile</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="commandDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Commands
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" id="powerOnBtn" href="#">Power On</a>
+              <a class="dropdown-item" id="lpVentBtn" href="#">Vent</a>
+              <a class="dropdown-item" id="lpFillBtn" href="#">LP Fill</a>
+              <a class="dropdown-item" id="hpFillBtn" href="#">HP Fill</a>
+              <a class="dropdown-item" id="armPodBtn" href="#">Arm</a>
+              <hr>
+              <a class="dropdown-item" id="calibrateBtn" href="#">Calibrate</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="mr-4 nav-item pull-right" id="emergencyBtn">
+            <a class="btn btn-outline-danger my-2 my-sm-0" href="#">Emergency Stop</a>
+          </li>
+          <li class="nav-item" id="shutdown">
+            <a class="nav-link" data-toggle="modal" data-target="#shutDownModal" href="#"><i class="fa fa-power-off"></i></a>
+          </li>
+          <li class="nav-item" id="help">
+            <a class="nav-link" data-toggle="modal" data-target="#helpModal" href="#"><i class="fa fa-question-circle"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-faded sidebar">
+          <h3>Analytics</h3>
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link"><span id="psiTransducer" class="nav-metric badge badge-primary">100%</span> Pressure Transducer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><span id="brakeTank1" class="nav-metric badge badge-primary">100%</span> Brake Tank 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><span id="brakeTank2" class="nav-metric badge badge-primary">100%</span> Brake Tank 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><span id="stripeCount" class="nav-metric badge badge-primary">0</span> Stripe Count</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><span id="approxDist" class="nav-metric badge badge-primary">0</span> Approx Distance (m)</a>
+            </li>
+          </ul>
+        </nav>
+
+
+
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" role="main">
+
+          <section class="row border-under">
+            <div class="col-md-3">
+              <h1 class="borderless">Dashboard</h1>
+            </div>
+            <div class="col-md-2">
+              <h1 class="borderless"><span id="podState" class="badge badge-pill badge-default">Disconnected</span></h1>
+            </div>
+            <div class="col-md-7 text-right">
+              <i id="battery0" class="fa fa-3x fa-rotate-270 fa-battery-three-quarters text-success"></i>
+              <i id="battery1" class="fa fa-3x fa-rotate-270 fa-battery-three-quarters text-success"></i>
+              <i id="battery2" class="fa fa-3x fa-rotate-270 fa-battery-three-quarters text-success"></i>
+              <i id="thermoIcon" class="fa fa-3x fa-thermometer-three-quarters text-warning"></i>
+              <i id="wifiIcon" class="fa fa-3x fa-wifi text-warning"></i>
+              <i id="alertIcon" class="fa fa-3x fa-bell text-success"></i>
+            </div>
+          </section>
+
+          <section class="row text-center placeholders pod">
+            <span id="solenoidSkateE1" class="badge badge-success" style="position:absolute; top:40%; left:30%;"></span>
+            <!-- Solenoid Skate -->
+            <!-- <span id="solenoidSkateE2" class="badge badge-primary" style="position:absolute; top:40%; left:34%;">100%</span> -->
+            <!-- MPYE Reading -->
+            <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:40%; left:57%;"></span>
+            <!-- Solenoid Skate -->
+            <!-- <span id="solenoidSkateC2" class="badge badge-primary" style="position:absolute; top:40%; left:61%;">100%</span> -->
+            <!-- MPYE Reading -->
+            <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:40%; left:86%;"></span>
+            <!-- Solenoid Skate -->
+            <!-- <span id="solenoidSkateA2" class="badge badge-primary" style="position:absolute; top:40%; left:90%;">100%</span> -->
+            <!-- MPYE Reading -->
+            <span id="solenoidSkateF1" class="badge badge-success" style="position:absolute; top:57%; left:30%;"></span>
+            <!-- Solenoid Skate -->
+            <!-- <span id="solenoidSkateF2" class="badge badge-primary" style="position:absolute; top:57%; left:34%;">100%</span> -->
+            <!-- MPYE Reading -->
+            <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:57%; left:57%;"></span>
+            <!-- Solenoid Skate -->
+            <!-- <span id="solenoidSkateD2" class="badge badge-primary" style="position:absolute; top:57%; left:61%;">100%</span> -->
+            <!-- MPYE Reading -->
+            <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:57%; left:86%;"></span>
+            <!-- Solenoid Skate -->
+            <!-- <span id="solenoidSkateB2" class="badge badge-primary" style="position:absolute; top:57%; left:90%;">100%</span> -->
+            <!-- MPYE Reading -->
+            <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:49%; left:45%;"></span>
+            <!-- Brake: Closed or Open -->
+            <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:49%; left:50%;"></span>
+            <!-- Closed Engaged or Released -->
+            <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:49%; left:64.3%;"></span>
+            <!-- Brake: Closed or Open -->
+            <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:49%; left:69.5%;"></span>
+            <!-- Closed Engaged or Released -->
+            <span id="lowPressureVent" class="badge badge-danger" style="position:absolute; top:40%; left:18%;"></span>
+            <!-- LP_VENT: Open or Closed -->
+            <span id="highPressureFill" class="badge badge-success" style="position:absolute; top:67%; left:74%;"></span>
+            <!-- HP_FILL: Closed or Open -->
+          </section>
+
+
+          <section class="row text-center placeholders status">
+            <table id="sensorTable" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                  <th>Warnings</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </section>
+
+
+        </main>
+      </div>
+    </div>
+
+    <div id="shutDownModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Shut Down Confirmation</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to shut down the pod? This action cannot be undone.</p>
+                    <p>You can also reset the controller, which will perform a software only reset.</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeShutdown" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="resetBtn" type="button" class="btn btn-warning" data-dismiss="modal">Reset</button>
+                    <button id="shutdownBtn" type="button" class="btn btn-danger" data-dismiss="modal">CONFIRM SHUTDOWN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="helpModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Help</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Welcome to the Paradigm Pod Control UI.  This Web UI is designed to provide an easy to use interface for
+                    performing <b>normal</b> operational interactions with the pod.  This includes:
+                  </p>
+
+                  <ul>
+                    <li> Filling the LP and HP pressure systems </li>
+                    <li> Arming the pod </li>
+                    <li> Controlling the pod's low power mode </li>
+                    <li> Asserting an Emergency remotely </li>
+                    <li> Remotely shutting down the pod </li>
+                    <li> Viewing the state of the air supply </li>
+                    <li> Viewing the state of the batteries </li>
+                    <li> Viewing the state of the network connection to the pod </li>
+                    <li> Viewing the state of the thermal monitoring sensors </li>
+                    <li> Viewing master caution and master warning alarms </li>
+                  </ul>
+                  <p>
+                    For a full demonstration of the capabilities of this application please contact Dan Hartman, Janna Shaftan,
+                    and Ed Hurtig of the Paradigm Controls Team
+                  </p>
+                </div>
+                <div class="modal-footer">
+                    <button id="helpBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Send Help Command to Pod</button>
+                    <button id="closeHelpBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="podResponseModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Command Execution</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <b>Command</b><br>
+                  <pre id="podResponseArgs"></pre>
+                  <hr>
+                  <b>Response</b><br>
+                  <pre id="podResponseContent"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="offsetModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Offset Sensor 'undefined'</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group row">
+                    <label for="example-text-input" class="col-6 col-form-label">Offset Value</label>
+                    <div class="col-4">
+                      <input class="form-control" type="number" value="0" id="offsetInput">
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeOffsetsBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="setOffsetBtn" type="button" class="btn btn-primary" data-dismiss="modal">Set Offset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script src="app.js"></script>
+
+  </body>
+</html>
