@@ -10,4 +10,6 @@ List of additions to make:
  
 # Screenshots
 
+<img width="1680" alt="screen shot 2017-06-07 at 8 25 35 pm" src="https://user-images.githubusercontent.com/24739064/26907203-ccc99f4e-4bbf-11e7-981f-ddf74b07efd5.png">
+
 <img width="1487" alt="screen shot 2017-05-12 at 2 44 57 pm" src="https://cloud.githubusercontent.com/assets/28206905/26018062/a076a2f0-3721-11e7-9f16-c6fa3f86365d.png">
