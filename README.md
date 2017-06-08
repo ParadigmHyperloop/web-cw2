@@ -4,6 +4,9 @@ This web based GUI is specific to the Paradigm Hyperloop Pod.
 
 It serves as the first point of interaction with the pod.
 
+The GUI is now built from src/index.html which will lanuch the loading animation for the GUI.
+Once the "Connect to pod interface" button is pressed, the user is taken to the actual GUI.
+
 List of additions to make:
  - More labels for new sensors being implemented in near future (MPYE Functionality).
  - Cosmetic updates along the way.
