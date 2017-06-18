@@ -4,6 +4,8 @@ var CONFIG = {
   proto: "http"
 }
 
+var LOADING = true
+
 var GRAFANA_URL = "http://localhost:3000"
 
 STATES = {
@@ -328,6 +330,12 @@ function endpoint(path) {
           success: function(podState) {
               console.log(podState);
 
+              if (LOADING && podState != {}) {
+                $('#connect').text("Connected!").removeClass('btn-outline-info').addClass('btn-success')
+                $('#loading').fadeOut()
+                LOADING = false
+              }
+
               var new_values = {
                 nc: {
                   '#solenoidSkateA1' : podState.SOL_SKATE_0,
@@ -390,4 +398,9 @@ function endpoint(path) {
           }
       });
   }
+
+  $('#connect').on('click', function () {
+    $('#loading').fadeOut()
+  })
+
 })(jQuery)
