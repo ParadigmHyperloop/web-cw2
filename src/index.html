@@ -38,7 +38,7 @@
         <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="https://paradigmhyperloop.com" target="_blank">
           <img src="icons/paradigm-geometry-11.png" width="35" height="35" alt="Paradigm Hyperloop"/>
           Paradigm
         </a>
@@ -53,6 +53,9 @@
             </li>
             <li id="flightprofile" class="nav-item">
               <a id="flightProfileBtn" class="nav-link" href="#">Flight Profile</a>
+            </li>
+            <li id="p&id" class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#pidModal" href="#">P&ID</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="commandDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -205,6 +208,23 @@
                       <button id="closeShutdown" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                       <button id="resetBtn" type="button" class="btn btn-warning" data-dismiss="modal">Reset</button>
                       <button id="shutdownBtn" type="button" class="btn btn-danger" data-dismiss="modal">CONFIRM SHUTDOWN</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div id="pidModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">P&ID</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                      <img src="P&ID.jpg" style="width:780px; height:400px">
+                  </div>
+                  <div class="modal-footer">
+                      
                   </div>
               </div>
           </div>
