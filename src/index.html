@@ -54,8 +54,16 @@
             <li id="flightprofile" class="nav-item">
               <a id="flightProfileBtn" class="nav-link" href="#">Flight Profile</a>
             </li>
-            <li id="p&id" class="nav-item">
-              <a class="nav-link" data-toggle="modal" data-target="#pidModal" href="#">P&ID</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="p&idDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              P&ID
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item data-toggle" data-target="#mainAirSupplyModal" id="mainAirSupplyBtn" href="#">Main Air Supply</a>
+                <hr>
+                <a class="dropdown-item data-toggle" data-target="#brakeModal" id="brakesBtn" href="#">Brakes</a>
+                <a class="dropdown-item data-toggle" data-target="#skateValveSubassemblyModal" id="skateValveSubassemblyBtn" href="#">Skate Valve Subassembly</a>
+              </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="commandDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
