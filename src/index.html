@@ -59,10 +59,10 @@
               P&ID
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item data-toggle" data-target="#mainAirSupplyModal" id="mainAirSupplyBtn" href="#">Main Air Supply</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#mainAirSupplyModal" id="mainAirSupplyBtn" href="#">Main Air Supply</a>
                 <hr>
-                <a class="dropdown-item data-toggle" data-target="#brakeModal" id="brakesBtn" href="#">Brakes</a>
-                <a class="dropdown-item data-toggle" data-target="#skateValveSubassemblyModal" id="skateValveSubassemblyBtn" href="#">Skate Valve Subassembly</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#brakeModal" id="brakesBtn" href="#">Brakes</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#skateValveSubassemblyModal" id="skateValveSubassemblyBtn" href="#">Skate Valve Subassembly</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -221,23 +221,6 @@
           </div>
       </div>
 
-      <div id="pidModal" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">P&ID</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                      <img src="P&ID.jpg" style="width:780px; height:400px">
-                  </div>
-                  <div class="modal-footer">
-                      
-                  </div>
-              </div>
-          </div>
-      </div>
-
       <div id="helpModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
               <div class="modal-content">
@@ -319,6 +302,54 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="mainAirSupplyModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Main Air Supply</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <img src="mainAirSupply.svg" style="width:1175px; height:400px zoom:100%">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="brakeModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Brakes</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <img src="brake.svg" style="width:1175px; height:400px zoom:100%">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="skateValveSubassemblyModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Skate Valve Subassembly</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <img src="skateValveSubassembly.svg" style="width:1175px; height:400px zoom:100%">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="loading">
