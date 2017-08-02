@@ -342,8 +342,8 @@ function endpoint(path) {
                   '#solenoidSkateB1' : podState.SOL_SKATE_0,
                   '#solenoidSkateC1' : podState.SOL_SKATE_1,
                   '#solenoidSkateD1' : podState.SOL_SKATE_1,
-                  '#solenoidSkateE1' : podState.SOL_SKATE_2,
-                  '#solenoidSkateF1' : podState.SOL_SKATE_2,
+                  //'#solenoidSkateE1' : podState.SOL_SKATE_2,
+                  //'#solenoidSkateF1' : podState.SOL_SKATE_2,
                   '#highPressureFill' : podState.SOL_HPFIL,
                   '#solenoidBrake1-1' : podState.SOL_CLAMP_FIL_0,
                   '#solenoidBrake2-1' : podState.SOL_CLAMP_FIL_1
