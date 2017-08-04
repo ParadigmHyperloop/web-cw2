@@ -392,6 +392,7 @@ function endpoint(path) {
               update_pod_state(podState.state);
 
               update_sensor_table(podState);
+
           },
           error: function(error) {
               console.log(error);
