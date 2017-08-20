@@ -10,8 +10,7 @@ A Tertiary UI with a 3D rendering of the pod created in Unity3D is used alongsid
  
 # Screenshots
 
-<img width="1680" alt="screen shot 2017-08-02 at 7 54 49 pm" 
-src="https://user-images.githubusercontent.com/24739064/28900067-7c264078-77bc-11e7-98f4-e2111d5a77d4.png">
+<img width="1680" alt="screen shot 2017-08-19 at 6 09 37 pm" src="https://user-images.githubusercontent.com/24739064/29491243-c7a43942-8509-11e7-9b52-d8f8ea68c13b.png">
 
 <img width="1680" alt="screen shot 2017-08-02 at 7 40 21 pm" 
 src="https://user-images.githubusercontent.com/24739064/28900011-191aa230-77bc-11e7-9e13-8dd2946c6afe.png">
