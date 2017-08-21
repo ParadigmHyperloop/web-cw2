@@ -391,15 +391,11 @@ function endpoint(path) {
               var pressureTransducer = podState.hp_pressure
               $('#psiTransducer').text(pressureTransducer);
 
-              var stripeCount = podState.stripe_count
-              $('#stripeCount').text(stripeCount);
-
               var approxDistance = podState.position_x
               $('#approxDist').text(approxDistance);
 
               update_battery($('#battery0'), podState.current_0, podState.voltage_0);
               update_battery($('#battery1'), podState.current_1, podState.voltage_1);
-              update_battery($('#battery2'), podState.current_2, podState.voltage_2);
 
               update_ping($('#wifiIcon'), podState.timestamp);
               update_pod_state(podState.state);
