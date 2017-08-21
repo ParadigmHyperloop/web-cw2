@@ -394,6 +394,12 @@ function endpoint(path) {
               var approxDistance = podState.position_x
               $('#approxDist').text(approxDistance);
 
+              var velocity = podState.velocity_x
+              $('#velocity').text(velocity);
+
+              var acceleration = podState.acceleration_x
+              $('#acceleration').text(acceleration);
+
               update_battery($('#battery0'), podState.current_0, podState.voltage_0);
               update_battery($('#battery1'), podState.current_1, podState.voltage_1);
 
