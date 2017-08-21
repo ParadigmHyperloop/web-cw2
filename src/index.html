@@ -66,6 +66,9 @@
                 <a class="dropdown-item" data-toggle="modal" data-target="#skateValveSubassemblyModal" id="skateValveSubassemblyBtn" href="#">Skate Valve Subassembly</a>
               </div>
             </li>
+            <li class="nav-item" id="batteryPacks">
+                <a class="nav-link" data-toggle="modal" data-target="#batteryPackModal" href="#">Battery Packs</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="commandDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Commands
@@ -256,6 +259,46 @@
                   <div class="modal-footer">
                       <button id="helpBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Send Help Command to Pod</button>
                       <button id="closeHelpBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div id="batteryPackModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Battery Pack Interface</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      Welcome to the Paradigm Battery Pack Interface. Do not engage or disengage either 
+                      battery pack without full consent from both Luke Merkl and James Massucco. 
+                    </p>
+                      <hr>
+                      <h4 id="batteryPack"> Battery Pack A </h4>
+                        <div id="batPackBtns">
+                          <button id="batteryPack0EngageBtn" type="button" class="btn btn-outline-primary">Engage</button>
+                          <button id="batteryPack0DisengageBtn" type="button" class="btn btn-outline-danger">Disengage</button>
+                          <h4 id="status">Status:</h4>
+                        </div>
+                      <hr>
+                      <h4 id="batteryPack"> Battery Pack B </h4>
+                        <div id="batPackBtns">
+                          <button id="batteryPack1EngageBtn" type="button" class="btn btn-outline-primary">Engage</button>
+                          <button id="batteryPack0DisengageBtn" type="button" class="btn btn-outline-danger">Disengage</button>
+                          <h4 id="status">Status:</h4>
+                        </div>
+                      <hr>
+
+                    <p>
+                      For a full explanation of the standard operating procedure for these battery packs,
+                      please contact Luke Merkl and James Massucco of the Paradigm Electrical Team.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                      <button id="closeBatteryPackBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                   </div>
               </div>
           </div>
