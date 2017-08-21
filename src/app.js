@@ -11,18 +11,17 @@ var GRAFANA_URL = "http://localhost:3000"
 STATES = {
   0 : { name: 'POST', color: 'default' },
   1 : { name: 'Boot', color: 'default' },
-  2 : { name: 'LP Fill', color: 'primary' },
-  3 : { name: 'HPFILL', color: 'primary' },
-  4 : { name: 'LOAD', color: 'primary' },
-  5 : { name: 'STANDBY', color: 'default' },
-  6 : { name: 'ARMED', color: 'warning' },
-  7 : { name: 'PUSHING', color: 'warning' },
-  8 : { name: 'COASTING', color: 'warning' },
-  9 : { name: 'BRAKING', color: 'warning' },
-  10 : { name: 'VENT', color: 'warning' },
-  11 : { name: 'RETRIEVAL', color: 'success' },
-  12 : { name: 'EMERGENCY', color: 'danger' },
-  13 : { name: 'SHUTDOWN', color: 'default' }
+  2 : { name: 'HPFILL', color: 'primary' },
+  3 : { name: 'LOAD', color: 'primary' },
+  4 : { name: 'STANDBY', color: 'default' },
+  5 : { name: 'ARMED', color: 'warning' },
+  6 : { name: 'PUSHING', color: 'warning' },
+  7 : { name: 'COASTING', color: 'warning' },
+  8 : { name: 'BRAKING', color: 'warning' },
+  9 : { name: 'VENT', color: 'warning' },
+  10 : { name: 'RETRIEVAL', color: 'success' },
+  11 : { name: 'EMERGENCY', color: 'danger' },
+  12 : { name: 'SHUTDOWN', color: 'default' }
 }
 
 /* Sensors */
@@ -207,10 +206,6 @@ function endpoint(path) {
     // Onclick functions for buttons on the NavBar.
     $('#lpVentBtn').on('click', function () {
       send_command(["vent"])
-    })
-
-    $('#lpFillBtn').on('click', function () {
-      send_command(["fill", "lp"])
     })
 
     $('#hpFillBtn').on('click', function () {
