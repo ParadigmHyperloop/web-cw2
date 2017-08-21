@@ -245,6 +245,26 @@ function endpoint(path) {
       send_command(["offset", $('#offsetModal').data('sensor_id'), $('#offsetInput').val()])
     })
 
+    $('#batteryPack0EngageBtn').on('click', function () {
+      send_command(["pack", "0", "0"])
+      $('#bat0Status').text("Status: Engaged")
+    })
+
+    $('#batteryPack0DisengageBtn').on('click', function () {
+      send_command(["pack", "0", "1"])
+      $('#bat0Status').text("Status: Disengaged")
+    })
+
+    $('#batteryPack1EngageBtn').on('click', function () {
+      send_command(["pack", "1", "0"])
+      $('#bat1Status').text("Status: Engaged")
+    })
+
+    $('#batteryPack1DisengageBtn').on('click', function () {
+      send_command(["pack", "1", "1"])
+      $('#bat1Status').text("Status: Disengaged")
+    })
+
     $('#telemetryDataBtn').on('click', function () {
     	window.open(GRAFANA_URL)
     })
@@ -339,11 +359,9 @@ function endpoint(path) {
               var new_values = {
                 nc: {
                   '#solenoidSkateA1' : podState.SOL_SKATE_0,
-                  '#solenoidSkateB1' : podState.SOL_SKATE_0,
-                  '#solenoidSkateC1' : podState.SOL_SKATE_1,
-                  '#solenoidSkateD1' : podState.SOL_SKATE_1,
-                  //'#solenoidSkateE1' : podState.SOL_SKATE_2,
-                  //'#solenoidSkateF1' : podState.SOL_SKATE_2,
+                  '#solenoidSkateB1' : podState.SOL_SKATE_1,
+                  '#solenoidSkateC1' : podState.SOL_SKATE_2,
+                  '#solenoidSkateD1' : podState.SOL_SKATE_2,
                   '#highPressureFill' : podState.SOL_HPFIL,
                   '#solenoidBrake1-1' : podState.SOL_CLAMP_FIL_0,
                   '#solenoidBrake2-1' : podState.SOL_CLAMP_FIL_1
