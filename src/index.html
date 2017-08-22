@@ -25,9 +25,9 @@
     <title>Paradigm Hyperloop</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="scripts/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="icons/fontawesome/css/font-awesome.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="fonts/googleFonts.css" rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="loading.css" rel="stylesheet">
     <link href="dashboard.css" rel="stylesheet">
@@ -51,9 +51,6 @@
             </li>
             <li id="telemetrydata" class="nav-item">
               <a id="telemetryDataBtn" class="nav-link" href="#">Telemetry Data</a>
-            </li>
-            <li id="flightprofile" class="nav-item">
-              <a id="flightProfileBtn" class="nav-link" href="#">Flight Profile</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="p&idDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -244,6 +241,7 @@
                       <li> Filling the HP pressure system </li>
                       <li> Arming the pod </li>
                       <li> Controlling the pod's low power mode </li>
+                      <li> Engaging and Disengaging both of the battery packs. </li>
                       <li> Asserting an Emergency remotely </li>
                       <li> Remotely shutting down the pod </li>
                       <li> Viewing the state of the air supply </li>
@@ -274,7 +272,7 @@
                   </div>
                   <div class="modal-body">
                     <p>
-                      Welcome to the Paradigm Battery Pack Interface. Do not engage or disengage either 
+                      Welcome to the Paradigm Pod Battery Pack UI. Do not engage or disengage either 
                       battery pack without full consent from both Luke Merkl and James Massucco. 
                     </p>
                       <hr>
@@ -414,15 +412,14 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="scripts/js/jquery.min.js"></script>
+    <script src="scripts/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="scripts/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     <script src="app.js"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="scripts/js/prefixfree.min.js"></script>
     <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-    <script src="js/index.js" type="text/javascript"></script>
   </body>
 </html>
