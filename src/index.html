@@ -102,22 +102,25 @@
             <h3>Analytics</h3>
             <ul class="nav nav-pills flex-column">
               <li class="nav-item">
-                <a class="nav-link"><span id="psiTransducer" class="nav-metric badge badge-primary">100%</span> Pressure Transducer</a>
+                <a class="nav-link"><span id="psiTransducer" class="nav-metric badge badge-primary"></span> HP System(psi)</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"><span id="brakeTank1" class="nav-metric badge badge-primary">100%</span> Brake Tank 1</a>
+                <a class="nav-link"><span id="lowPressureTransducer" class="nav-metric badge badge-primary"></span> LP System(psi)</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"><span id="brakeTank2" class="nav-metric badge badge-primary">100%</span> Brake Tank 2</a>
+                <a class="nav-link"><span id="brakeTank0" class="nav-metric badge badge-primary"></span> Brake Tank A</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"><span id="brakeTank1" class="nav-metric badge badge-primary"></span> Brake Tank B</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link"><span id="approxDist" class="nav-metric badge badge-primary">0</span> Approx Distance (m)</a>
+                <a class="nav-link"><span id="approxDist" class="nav-metric badge badge-primary"></span> Approx Distance (m)</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"><span id="velocity" class="nav-metric badge badge-primary">0</span> Velocity (m/s)</a>
+                <a class="nav-link"><span id="velocity" class="nav-metric badge badge-primary"></span> Velocity (m/s)</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"><span id="acceleration" class="nav-metric badge badge-primary">100%</span> Acceleration (m/s^2)</a>
+                <a class="nav-link"><span id="acceleration" class="nav-metric badge badge-primary"></span> Acceleration (m/s^2)</a>
               </li>
             </ul>
           </nav>
@@ -126,7 +129,7 @@
 
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" role="main">
 
-            <section class="row border-under">
+            <section class="row">
               <div class="col-md-3">
                 <h1 class="borderless">Dashboard</h1>
               </div>
@@ -143,19 +146,19 @@
             </section>
 
             <section class="row text-center placeholders pod">
-              <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:81.5%; left:43.15%;"></span>
+              <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:82.3%; left:43.15%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateA2" class="badge badge-primary" style="position:absolute; top:40%; left:90%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:81.5%; left:57%;"></span>
+              <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:82.3%; left:57%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateB2" class="badge badge-primary" style="position:absolute; top:57%; left:90%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:73%; left:70.7%;"></span>
+              <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:73.8%; left:70.7%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateC2" class="badge badge-primary" style="position:absolute; top:40%; left:61%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:73%; left:89.7%;"></span>
+              <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:73.8%; left:89.7%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateD2" class="badge badge-primary" style="position:absolute; top:57%; left:61%;">100%</span> -->
               <!-- MPYE Reading -->
@@ -167,15 +170,15 @@
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateF2" class="badge badge-primary" style="position:absolute; top:57%; left:34%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:85.2%; left:87.3%;"></span>
+              <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:86.2%; left:87.3%;"></span>
               <!-- Brake: Closed or Open -->
-              <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:85.2%; left:91.4%;"></span>
+              <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:86.2%; left:91.4%;"></span>
               <!-- Closed Engaged or Released -->
-              <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:85.2%; left:68.3%;"></span>
+              <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:86.2%; left:68.3%;"></span>
               <!-- Brake: Closed or Open -->
-              <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:85.2%; left:72.4%;"></span>
+              <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:86.2%; left:72.4%;"></span>
               <!-- Closed Engaged or Released -->
-              <span id="lowPressureVent" class="badge badge-danger" style="position:absolute; top:94.5%; left:83%;"></span>
+              <span id="highPressureVent" class="badge badge-danger" style="position:absolute; top:95.5%; left:83%;"></span>
               <!-- LP_VENT: Open or Closed -->
               <span id="highPressureFill" class="badge badge-success" style="position:absolute; top:15%; left:65.8%;"></span>
               <!-- HP_FILL: Closed or Open -->

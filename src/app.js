@@ -296,6 +296,10 @@ function endpoint(path) {
 
   function update_badge_valve_nc(id, value) {
       if (!valid_valve_value(value)) {
+        if (value == null) {
+          console.log("Valve: " + id + " has invalid value: null")
+          return;
+        }
         console.log("Valve: " + id + " has invalid value: " + value.toString())
         return;
       }
@@ -358,20 +362,18 @@ function endpoint(path) {
                   '#solenoidSkateC1' : podState.SOL_SKATE_2,
                   '#solenoidSkateD1' : podState.SOL_SKATE_2,
                   '#highPressureFill' : podState.SOL_HPFIL,
+                  '#highPressureVent' : podState.SOL_VENT,
                   '#solenoidBrake1-1' : podState.SOL_CLAMP_FIL_0,
-                  '#solenoidBrake2-1' : podState.SOL_CLAMP_FIL_1
-                },
-                no: {
-                  '#lowPressureVent' : podState.SOL_VENT
+                  '#solenoidBrake2-1' : podState.SOL_CLAMP_FIL_1,
                 },
                 brake: {
                   '#solenoidBrake1-2' : [
                     podState.SOL_CLAMP_REL_0,
-                    podState.SOL_CLAMP_ENG_0
+                    podState.SOL_CLAMP_ENG_0,
                   ],
                   '#solenoidBrake2-2' : [
                     podState.SOL_CLAMP_REL_1,
-                    podState.SOL_CLAMP_ENG_1
+                    podState.SOL_CLAMP_ENG_1,
                   ]
                 }
               }
@@ -380,16 +382,21 @@ function endpoint(path) {
                 update_badge_valve_nc(key, new_values['nc'][key]);
               }
 
-              for (var key in new_values['no']) {
-                update_badge_valve_no(key, new_values['no'][key]);
-              }
-
               for (var key in new_values['brake']) {
                 update_badge_valve_brake(key, new_values['brake'][key][0], new_values['brake'][key][1]);
               }
 
-              var pressureTransducer = podState.hp_pressure
+              var pressureTransducer = podState.hp_pressure;
               $('#psiTransducer').text(pressureTransducer);
+
+              var lowPressure = podState.reg_pressure_0;
+              $('#lowPressureTransducer').text(lowPressure);
+
+              var brakeTank0 = podState.brake_tank_0
+              $('#brakeTank0').text(brakeTank0);
+
+              var brakeTank1 = podState.brake_tank_1
+              $('#brakeTank1').text(brakeTank1);
 
               var approxDistance = podState.position_x
               $('#approxDist').text(approxDistance);
