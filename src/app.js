@@ -204,8 +204,12 @@ function endpoint(path) {
 
   $(function () {
     // Onclick functions for buttons on the NavBar.
-    $('#lpVentBtn').on('click', function () {
+    $('#ventBtn').on('click', function () {
       send_command(["vent"])
+    })
+
+    $('#standbyBtn').on('click', function() {
+      send_command(["standby"])
     })
 
     $('#hpFillBtn').on('click', function () {
