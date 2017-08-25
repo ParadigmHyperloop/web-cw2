@@ -124,6 +124,14 @@
                 <a class="nav-link"><span id="acceleration" class="nav-metric badge badge-primary"></span> Acceleration (m/s<sup>2</sup>)</a>
               </li>
             </ul>
+            <hr>
+            <div id="returnToStandby">
+              <h4>Return to Standby</h4>
+              <div class="btn-group" role="group"  aria-label="...">
+               <button id="returnToStandbyActive" type="button" class="btn btn-outline-primary">Engage</button>
+                <button id="returnToStandbyInactive" type="button" class="btn btn-outline-danger active">Disengage</button>
+              </div>
+            </div>
           </nav>
 
 
@@ -131,13 +139,20 @@
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" role="main">
 
             <section class="row">
-              <div class="col-md-3">
+              <div class="col-md-3">  
                 <h1 class="borderless">Dashboard</h1>
               </div>
               <div class="col-md-2">
                 <h1 class="borderless"><span id="podState" class="badge badge-pill badge-default">Disconnected</span></h1>
               </div>
-              <div class="col-md-7 text-right">
+              <div class="col-md-4">
+                <h4 id="statusUpdate" class="fa fa-3x">
+                  <b id="statusUpdate">Command:</b><br>
+                  <pre id="podResponseArgs"></pre>
+                  <b id="statusUpdate">Response:</b><br>
+                  <pre id="podResponseContent"></pre></h4>
+              </div>
+              <div class="col-md-3 text-right">                  
                 <i id="battery0" class="fa fa-3x fa-rotate-270 fa-battery-three-quarters text-success"></i>
                 <i id="battery1" class="fa fa-3x fa-rotate-270 fa-battery-three-quarters text-success"></i>
                 <i id="thermoIcon" class="fa fa-3x fa-thermometer-three-quarters text-warning"></i>
@@ -147,19 +162,19 @@
             </section>
 
             <section class="row text-center placeholders pod">
-              <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:82.3%; left:43.15%;"></span>
+              <span id="solenoidSkateA1" class="badge badge-success" style="position:absolute; top:81.8%; left:43.15%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateA2" class="badge badge-primary" style="position:absolute; top:40%; left:90%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:82.3%; left:57%;"></span>
+              <span id="solenoidSkateB1" class="badge badge-success" style="position:absolute; top:81.8%; left:57%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateB2" class="badge badge-primary" style="position:absolute; top:57%; left:90%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:73.8%; left:70.7%;"></span>
+              <span id="solenoidSkateC1" class="badge badge-success" style="position:absolute; top:73.3%; left:70.7%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateC2" class="badge badge-primary" style="position:absolute; top:40%; left:61%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:73.8%; left:89.7%;"></span>
+              <span id="solenoidSkateD1" class="badge badge-success" style="position:absolute; top:73.3%; left:89.7%;"></span>
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateD2" class="badge badge-primary" style="position:absolute; top:57%; left:61%;">100%</span> -->
               <!-- MPYE Reading -->
@@ -171,17 +186,17 @@
               <!-- Solenoid Skate -->
               <!-- <span id="solenoidSkateF2" class="badge badge-primary" style="position:absolute; top:57%; left:34%;">100%</span> -->
               <!-- MPYE Reading -->
-              <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:86.2%; left:87.3%;"></span>
+              <span id="solenoidBrake1-1" class="badge badge-success" style="position:absolute; top:85.3%; left:87.3%;"></span>
               <!-- Brake: Closed or Open -->
-              <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:86.2%; left:91.4%;"></span>
+              <span id="solenoidBrake1-2" class="badge badge-warning" style="position:absolute; top:85.3%; left:91.4%;"></span>
               <!-- Closed Engaged or Released -->
-              <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:86.2%; left:68.3%;"></span>
+              <span id="solenoidBrake2-1" class="badge badge-success" style="position:absolute; top:85.3%; left:68.3%;"></span>
               <!-- Brake: Closed or Open -->
-              <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:86.2%; left:72.4%;"></span>
+              <span id="solenoidBrake2-2" class="badge badge-warning" style="position:absolute; top:85.3%; left:72.4%;"></span>
               <!-- Closed Engaged or Released -->
-              <span id="highPressureVent" class="badge badge-danger" style="position:absolute; top:95.5%; left:83%;"></span>
+              <span id="highPressureVent" class="badge badge-danger" style="position:absolute; top:95%; left:83%;"></span>
               <!-- LP_VENT: Open or Closed -->
-              <span id="highPressureFill" class="badge badge-success" style="position:absolute; top:15%; left:65.8%;"></span>
+              <span id="highPressureFill" class="badge badge-success" style="position:absolute; top:14.5%; left:65.8%;"></span>
               <!-- HP_FILL: Closed or Open -->
             </section>
 
@@ -281,16 +296,18 @@
                       <hr>
                       <h4 id="batteryPack"> Battery Pack A </h4>
                         <div id="batPackBtns">
-                          <button id="batteryPack0EngageBtn" type="button" class="btn btn-outline-primary">Engage</button>
-                          <button id="batteryPack0DisengageBtn" type="button" class="btn btn-outline-danger">Disengage</button>
-                          <h4 id="bat0Status" class="batStatus">Status: Disengaged</h4>
+                          <div class="btn-group" role="group"  aria-label="...">
+                            <button id="batteryPack0EngageBtn" type="button" class="btn btn-outline-primary">Engage</button>
+                            <button id="batteryPack0DisengageBtn" type="button" class="btn btn-outline-danger active">Disengage</button>
+                          </div>
                         </div>
                       <hr>
                       <h4 id="batteryPack"> Battery Pack B </h4>
                         <div id="batPackBtns">
-                          <button id="batteryPack1EngageBtn" type="button" class="btn btn-outline-primary">Engage</button>
-                          <button id="batteryPack1DisengageBtn" type="button" class="btn btn-outline-danger">Disengage</button>
-                          <h4 id="bat1Status" class="batStatus">Status: Disengaged</h4>
+                          <div class="btn-group" role="group"  aria-label="...">
+                            <button id="batteryPack1EngageBtn" type="button" class="btn btn-outline-primary">Engage</button>
+                            <button id="batteryPack1DisengageBtn" type="button" class="btn btn-outline-danger active">Disengage</button>
+                          </div>
                         </div>
                       <hr>
 
@@ -305,28 +322,6 @@
               </div>
           </div>
       </div>
-
-      <div id="podResponseModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Command Execution</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <b>Command</b><br>
-                    <pre id="podResponseArgs"></pre>
-                    <hr>
-                    <b>Response</b><br>
-                    <pre id="podResponseContent"></pre>
-                  </div>
-                  <div class="modal-footer">
-                      <button id="closeBtn" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
 
     <div id="offsetModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

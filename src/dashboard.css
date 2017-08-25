@@ -108,12 +108,21 @@ h1 {
 #batteryPack {
   font-size: 14pt;
   text-align: center;
-  color: #3fe529;
+  color: #000000;
+  font-family: Helvetica;
 }
 
 .batStatus {
   color: #25a6fc;
   font-size: 10pt;
+}
+
+#statusUpdate {
+  font-size: 10pt;
+}
+
+#returnToStandby {
+  text-align: center;
 }
 
 @keyframes fa-blink {

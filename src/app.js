@@ -244,24 +244,40 @@ function endpoint(path) {
       send_command(["offset", $('#offsetModal').data('sensor_id'), $('#offsetInput').val()])
     })
 
+    $('#returnToStandbyActive').on('click', function () {
+      send_command(["returnToStandby", "1"])
+      $('#returnToStandbyActive').addClass("active")
+      $('#returnToStandbyInactive').removeClass("active")
+    })
+
+    $('#returnToStandbyInactive').on('click', function () {
+      send_command(["returnToStandby", "0"])
+      $('#returnToStandbyActive').removeClass("active")
+      $('#returnToStandbyInactive').addClass("active")
+    })
+
     $('#batteryPack0EngageBtn').on('click', function () {
       send_command(["pack", "0", "0"])
-      $('#bat0Status').text("Status: Engaged")
+      $('#batteryPack0EngageBtn').addClass("active")
+      $('#batteryPack0DisengageBtn').removeClass("active")
     })
 
     $('#batteryPack0DisengageBtn').on('click', function () {
       send_command(["pack", "0", "1"])
-      $('#bat0Status').text("Status: Disengaged")
+      $('#batteryPack0EngageBtn').removeClass("active")
+      $('#batteryPack0DisengageBtn').addClass("active")
     })
 
     $('#batteryPack1EngageBtn').on('click', function () {
       send_command(["pack", "1", "0"])
-      $('#bat1Status').text("Status: Engaged")
+      $('#batteryPack1EngageBtn').addClass("active")
+      $('#batteryPack1DisengageBtn').removeClass("active")
     })
 
     $('#batteryPack1DisengageBtn').on('click', function () {
       send_command(["pack", "1", "1"])
-      $('#bat1Status').text("Status: Disengaged")
+      $('#batteryPack1EngageBtn').removeClass("active")
+      $('#batteryPack1DisengageBtn').addClass("active")
     })
 
     $('#telemetryDataBtn').on('click', function () {
