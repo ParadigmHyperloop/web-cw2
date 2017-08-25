@@ -177,7 +177,7 @@ function endpoint(path) {
       args = cmd.slice(1)
     }
     $("#podResponseArgs").text(cmd.join(' '))
-    $("#podResponseModal").modal('show')
+    // $("#podResponseModal").modal('show')
     $("#podResponseContent").html('<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>')
     $.ajax({
         url: endpoint("commands/" + name),
@@ -214,6 +214,10 @@ function endpoint(path) {
 
     $('#armPodBtn').on('click', function () {
       send_command(["arm"])
+    })
+
+    $('#standbyBtn').on('click', function () {
+      send_command(["standby"])
     })
 
     $('#helpBtn').on('click', function () {
