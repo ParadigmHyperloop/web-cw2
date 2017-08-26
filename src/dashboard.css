@@ -117,11 +117,27 @@ h1 {
   font-size: 10pt;
 }
 
+#responseText {
+  text-align: left;
+}
+
 #statusUpdate {
   font-size: 10pt;
 }
 
 #returnToStandby {
+  text-align: center;
+}
+
+#returnToStandbyText {
+  font-size: 14pt;
+}
+
+#commandResponse {
+  text-align: center;
+}
+
+#softwareState {
   text-align: center;
 }
 
