@@ -15,5 +15,4 @@ TODO:
 
 <img width="1680" alt="screen shot 2017-08-19 at 6 09 37 pm" src="https://user-images.githubusercontent.com/24739064/29491243-c7a43942-8509-11e7-9b52-d8f8ea68c13b.png">
 
-<img width="1680" alt="screen shot 2017-08-02 at 7 40 21 pm" 
-src="https://user-images.githubusercontent.com/24739064/28900011-191aa230-77bc-11e7-9e13-8dd2946c6afe.png">
+<img width="1677" alt="screen shot 2017-08-26 at 9 50 55 am" src="https://user-images.githubusercontent.com/24739064/29743328-a16611ac-8a44-11e7-9601-0e579d4a7865.png">
