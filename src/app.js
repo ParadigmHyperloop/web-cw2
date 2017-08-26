@@ -257,25 +257,25 @@ function endpoint(path) {
     })
 
     $('#batteryPack0EngageBtn').on('click', function () {
-      send_command(["pack", "0", "0"])
+      send_command(["pack", "0", "1"])
       $('#batteryPack0EngageBtn').addClass("active")
       $('#batteryPack0DisengageBtn').removeClass("active")
     })
 
     $('#batteryPack0DisengageBtn').on('click', function () {
-      send_command(["pack", "0", "1"])
+      send_command(["pack", "0", "0"])
       $('#batteryPack0EngageBtn').removeClass("active")
       $('#batteryPack0DisengageBtn').addClass("active")
     })
 
     $('#batteryPack1EngageBtn').on('click', function () {
-      send_command(["pack", "1", "0"])
+      send_command(["pack", "1", "1"])
       $('#batteryPack1EngageBtn').addClass("active")
       $('#batteryPack1DisengageBtn').removeClass("active")
     })
 
     $('#batteryPack1DisengageBtn').on('click', function () {
-      send_command(["pack", "1", "1"])
+      send_command(["pack", "1", "0"])
       $('#batteryPack1EngageBtn').removeClass("active")
       $('#batteryPack1DisengageBtn').addClass("active")
     })
