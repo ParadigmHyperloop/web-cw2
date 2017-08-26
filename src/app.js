@@ -427,6 +427,16 @@ function endpoint(path) {
               var acceleration = podState.acceleration_x
               $('#acceleration').text(acceleration);
 
+              var pusher = podState.pusher_present
+              if (pusher == 0) {
+                $('#pusherPresent').text("No")
+              } else if (pusher == 1) {
+                $('#pusherPresent').text("Yes")
+              } else {
+                $('#pusherPresent').text("Inv")
+              }
+              
+
               update_battery($('#battery0'), podState.current_0, podState.voltage_0);
               update_battery($('#battery1'), podState.current_1, podState.voltage_1);
 
