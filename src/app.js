@@ -333,10 +333,6 @@ function endpoint(path) {
       }
   }
 
-  function update_badge_valve_no(id, value) {
-    update_badge_valve_nc(id, value ? 0 : 1);
-  }
-
   function update_badge_valve_brake(id, value_rel, value_eng) {
     if (!valid_valve_value(value_rel) || !valid_valve_value(value_eng)) {
       console.log("Valve: " + id + " has invalid values")
@@ -380,18 +376,16 @@ function endpoint(path) {
                   '#solenoidSkateA1' : podState.SOL_SKATE_0,
                   '#solenoidSkateB1' : podState.SOL_SKATE_1,
                   '#solenoidSkateC1' : podState.SOL_SKATE_2,
-                  '#solenoidSkateD1' : podState.SOL_SKATE_2,
+                  '#solenoidSkateD1' : podState.SOL_SKATE_3,
                   '#highPressureFill' : podState.SOL_HPFIL,
                   '#highPressureVent' : podState.SOL_VENT,
-                  '#solenoidBrake1-1' : podState.SOL_CLAMP_FIL_0,
-                  '#solenoidBrake2-1' : podState.SOL_CLAMP_FIL_1,
                 },
                 brake: {
-                  '#solenoidBrake1-2' : [
+                  '#solenoidBrake1-1' : [
                     podState.SOL_CLAMP_REL_0,
                     podState.SOL_CLAMP_ENG_0,
                   ],
-                  '#solenoidBrake2-2' : [
+                  '#solenoidBrake2-1' : [
                     podState.SOL_CLAMP_REL_1,
                     podState.SOL_CLAMP_ENG_1,
                   ]
