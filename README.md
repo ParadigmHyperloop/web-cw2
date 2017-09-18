@@ -7,9 +7,6 @@ It serves as the primary point of interaction with the pod and allows us to send
 A secondary UI displays critical telemtry and sensor data has been created in Grafana and is used alongside this one to allow for quick analysis of all pod systems.
 
 A tertiary UI with a 3D to-scale render of the pod has been created in Unity3D and is used alongside this one to show real-time visual representations of data: e.g. relative position of the pod in the SpaceX vacuum chamber. 
-
-TODO:
-	-	Add a countdown timer for transition from the coasting state to the braking state. 
  
 # Screenshots
 
