@@ -12,4 +12,6 @@ A tertiary UI with a 3D to-scale render of the pod has been created in Unity3D a
 
 <img width="1680" alt="screen shot 2017-08-19 at 6 09 37 pm" src="https://user-images.githubusercontent.com/24739064/29491243-c7a43942-8509-11e7-9b52-d8f8ea68c13b.png">
 
-<img width="1677" alt="screen shot 2017-08-26 at 9 50 55 am" src="https://user-images.githubusercontent.com/24739064/29743328-a16611ac-8a44-11e7-9601-0e579d4a7865.png">
+<img width="1680" alt="screen shot 2017-09-13 at 11 30 02 pm" src="https://user-images.githubusercontent.com/24739064/30560327-9ab314f6-9c85-11e7-9452-c943ba9b0df0.png">
+
+<img width="1680" alt="screen shot 2017-09-13 at 11 30 30 pm" src="https://user-images.githubusercontent.com/24739064/30560329-9c9c6fec-9c85-11e7-93f3-704201ceda0d.png">
